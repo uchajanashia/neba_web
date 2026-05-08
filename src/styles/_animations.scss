@@ -1,0 +1,117 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ornamentSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes logoPulse {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(0.97);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+}
+
+@keyframes owlPulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.96);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes gentleBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+
+.anim-fade-in {
+  animation: fadeIn 0.85s ease-out both;
+}
+
+.anim-fade-in-up {
+  animation: fadeInUp 0.9s ease-out both;
+}
+
+.anim-fade-in-up--delay-1 {
+  animation-delay: 140ms;
+}
+
+.anim-fade-in-up--delay-2 {
+  animation-delay: 280ms;
+}
+
+.anim-fade-in-up--delay-3 {
+  animation-delay: 420ms;
+}
+
+.anim-fade-in-up--delay-4 {
+  animation-delay: 560ms;
+}
+
+.anim-bounce {
+  animation: gentleBounce 2.6s ease-in-out infinite;
+}
+
+::view-transition-old(root) {
+  animation: 260ms ease-in both fadeOut;
+}
+
+::view-transition-new(root) {
+  animation: 460ms ease-out both fadeIn;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
