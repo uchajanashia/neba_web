@@ -53,6 +53,12 @@
   }
 }
 
+@keyframes loaderTextLineFill {
+  to {
+    stroke-dasharray: 420 0;
+  }
+}
+
 @keyframes gentleBounce {
   0%,
   100% {

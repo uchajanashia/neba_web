@@ -4,16 +4,14 @@ import { RouterLink } from '@angular/router';
 import { Bracelet } from '../../../core/models/bracelet.model';
 import { CONTACT } from '../../../core/models/contact.constants';
 import { I18nService } from '../../../core/services/i18n.service';
-import { HoverShineDirective } from '../../directives/hover-shine.directive';
 
 @Component({
   selector: 'app-bracelet-card',
-  imports: [RouterLink, NgOptimizedImage, HoverShineDirective],
+  imports: [RouterLink, NgOptimizedImage],
   template: `
     <article
       class="bracelet-card"
       [class]="'bracelet-card bracelet-card--' + variant()"
-      appHoverShine
     >
       <a [routerLink]="['/bracelets', bracelet().slug]" class="bracelet-card__image-link">
         <span class="bracelet-card__image-wrap">
@@ -61,7 +59,10 @@ export class BraceletCardComponent {
   readonly bracelet = input.required<Bracelet>();
   readonly variant = input<'grid' | 'featured'>('grid');
   readonly messengerUrl = CONTACT.messenger;
-  readonly heroImage = computed(() => this.bracelet().images[0]);
+  readonly heroImage = computed(() => ({
+    src: this.bracelet().cardImage,
+    alt: this.bracelet().name + ' handcrafted silver bracelet',
+  }));
   readonly localizedContent = computed(
     () => this.bracelet().content[this.i18n.lang()] ?? this.bracelet().content.en,
   );

@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(New-Item -ItemType Directory -Force -Path \"c:\\\\Users\\\\User\\\\Documents\\\\chatbot\\\\neba_web\\\\src\\\\assets\\\\images\\\\hero\")",
+      "PowerShell(New-Item -ItemType Directory -Force -Path \"c:\\\\Users\\\\User\\\\Documents\\\\chatbot\\\\neba_web\\\\src\\\\assets\\\\images\\\\craft\")",
+      "PowerShell(New-Item -ItemType Directory -Force -Path \"c:\\\\Users\\\\User\\\\Documents\\\\chatbot\\\\neba_web\\\\src\\\\assets\\\\images\\\\bracelets\\\\pesvi\")",
+      "PowerShell(New-Item -ItemType Directory -Force -Path \"c:\\\\Users\\\\User\\\\Documents\\\\chatbot\\\\neba_web\\\\src\\\\assets\\\\images\\\\bracelets\\\\mcveli\")",
+      "PowerShell(New-Item -ItemType Directory -Force -Path \"c:\\\\Users\\\\User\\\\Documents\\\\chatbot\\\\neba_web\\\\src\\\\assets\\\\images\\\\bracelets\\\\mtis-kvali\")",
+      "Bash(magick -version)",
+      "Bash(ffmpeg -version)",
+      "PowerShell(Add-Type -AssemblyName System.Drawing; $files = @\\('c:\\\\Users\\\\User\\\\Documents\\\\chatbot\\\\neba_web\\\\public\\\\assets\\\\images\\\\bracelets\\\\pesvi\\\\1 \\(1\\).jpg','c:\\\\Users\\\\User\\\\Documents\\\\chatbot\\\\neba_web\\\\public\\\\assets\\\\images\\\\bracelets\\\\pesvi\\\\1 \\(2\\).jpg','c:\\\\Users\\\\User\\\\Documents\\\\chatbot\\\\neba_web\\\\public\\\\assets\\\\images\\\\bracelets\\\\mcveli\\\\1 \\(1\\).jpg','c:\\\\Users\\\\User\\\\Documents\\\\chatbot\\\\neba_web\\\\public\\\\assets\\\\images\\\\mtis-kvali\\\\1 \\(1\\).jpg','c:\\\\Users\\\\User\\\\Documents\\\\chatbot\\\\neba_web\\\\public\\\\assets\\\\images\\\\bracelets\\\\mtis-kvali\\\\1 \\(1\\).jpg'\\); foreach \\($f in $files\\) { if \\(Test-Path $f\\) { try { $img = [System.Drawing.Image]::FromFile\\($f\\); Write-Host \\(\"{0} => {1}x{2} ratio={3:N2}\" -f \\(Split-Path $f -Leaf\\), $img.Width, $img.Height, \\($img.Width/$img.Height\\)\\); $img.Dispose\\(\\) } catch { Write-Host \"ERR: $f\"} } })",
+      "Bash(npx ng *)",
+      "PowerShell(Get-ChildItem -Path \"public\\\\assets\\\\images\\\\bracelets\" -Recurse -File | Select-Object FullName, Length | ForEach-Object { [PSCustomObject]@{ Path = $_.FullName.Replace\\(\\(Get-Location\\).Path + \"\\\\\", \"\"\\); SizeKB = [math]::Round\\($_.Length / 1KB, 1\\) } } | Format-Table -AutoSize)"
+    ]
+  }
+}

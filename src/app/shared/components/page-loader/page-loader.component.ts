@@ -6,21 +6,18 @@ import { ChangeDetectionStrategy, Component, OnInit, PLATFORM_ID, inject, signal
   selector: 'app-page-loader',
   template: `
     @if (visible()) {
-      <div class="page-loader" [@loaderFade]>
-        <img
-          src="/assets/logo/favicon.png"
-          alt=""
-          aria-hidden="true"
-          width="128"
-          height="128"
-          class="page-loader__owl"
-        />
+      <div class="page-loader" [@loaderFade] aria-label="Loading">
+        <svg class="page-loader__logo" width="320" height="140" viewBox="0 0 320 140" aria-hidden="true">
+          <text x="160" y="95" text-anchor="middle" class="page-loader__text-line">
+            ნება
+          </text>
+        </svg>
       </div>
     }
   `,
   animations: [
     trigger('loaderFade', [
-      transition(':leave', [animate('650ms 150ms ease-out', style({ opacity: 0 }))]),
+      transition(':leave', [animate('120ms ease-out', style({ opacity: 0 }))]),
     ]),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -35,6 +32,6 @@ export class PageLoaderComponent implements OnInit {
       return;
     }
 
-    window.setTimeout(() => this.visible.set(false), 1100);
+    window.setTimeout(() => this.visible.set(false), 2500);
   }
 }

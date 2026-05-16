@@ -42,6 +42,7 @@ export interface Bracelet {
   id: string;
   slug: string;
   name: string;
+  cardImage: string;
   nameEn: string;
   tagline: string;
   shortDescription: string;

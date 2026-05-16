@@ -1,8 +1,6 @@
-import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  PLATFORM_ID,
   computed,
   effect,
   inject,
@@ -28,7 +26,6 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
   selector: 'app-bracelet-detail',
   imports: [
     RouterLink,
-    NgOptimizedImage,
     BraceletCardComponent,
     CtaButtonsComponent,
     ScrollRevealDirective,
@@ -40,13 +37,12 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
           <div class="gallery" appScrollReveal>
             <div class="gallery__main">
               <img
-                [ngSrc]="activeVariantImage()?.src ?? activeImage().src"
+                [src]="activeVariantImage()?.src ?? activeImage().src"
                 [alt]="activeVariantImage()?.alt ?? activeImage().alt"
-                fill
-                priority
-                sizes="(max-width: 900px) 92vw, 58vw"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
                 class="gallery__main-image"
-                [class.gallery__main-image--transitioning]="imageTransitioning()"
               />
             </div>
             <div class="gallery__thumbs" [attr.aria-label]="i18n.t('detail.gallery_thumbs_aria')">
@@ -57,7 +53,7 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
                   [class.gallery__thumb--active]="activeImageIndex() === i"
                   (click)="selectImage(i)"
                 >
-                  <img [ngSrc]="image.src" [alt]="image.alt" width="96" height="120" />
+                  <img [src]="image.src" [alt]="image.alt" loading="lazy" decoding="async" />
                 </button>
               }
             </div>
@@ -241,14 +237,6 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
   `,
   styles: [
     `
-      .gallery__main-image {
-        transition: opacity 0.35s ease;
-      }
-
-      .gallery__main-image--transitioning {
-        opacity: 0.3;
-      }
-
       .variant-selector {
         display: flex;
         flex-direction: column;
@@ -401,11 +389,9 @@ export class BraceletDetailComponent {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly metaService = inject(MetaService);
-  private readonly platformId = inject(PLATFORM_ID);
   readonly i18n = inject(I18nService);
 
   readonly activeImageIndex = signal(0);
-  readonly imageTransitioning = signal(false);
   readonly selectedSize = signal<BraceletSizeOption>('M');
   readonly selectedStrap = signal<BraceletStrapType>('leather-brown');
   readonly selectedContentSize = signal<BraceletContentSize>('large');
@@ -464,7 +450,7 @@ export class BraceletDetailComponent {
   constructor() {
     let initializedVariant = false;
 
-    effect((onCleanup) => {
+    effect(() => {
       this.selectedSize();
       this.selectedStrap();
       this.selectedContentSize();
@@ -475,12 +461,6 @@ export class BraceletDetailComponent {
       }
 
       this.activeImageIndex.set(0);
-
-      if (isPlatformBrowser(this.platformId)) {
-        this.imageTransitioning.set(true);
-        const timeoutId = setTimeout(() => this.imageTransitioning.set(false), 350);
-        onCleanup(() => clearTimeout(timeoutId));
-      }
     });
 
     effect(() => {
@@ -496,7 +476,7 @@ export class BraceletDetailComponent {
         this.metaService.updateMeta({
           title: `${item.nameEn} - Georgian Silver Bracelet`,
           description: content?.shortDescription ?? item.shortDescription,
-          image: item.images[0].src,
+          image: item.cardImage,
         });
       }
     });

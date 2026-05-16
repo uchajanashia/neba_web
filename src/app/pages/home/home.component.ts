@@ -33,13 +33,13 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
       <div class="hero__media">
         <img
           ngSrc="/assets/images/hero/stone-hero.jpg"
-          alt="Georgian silver bracelet on a dark stone workshop surface"
+          alt="Three handcrafted Georgian silver bracelets on a mossy mountain fortress stone at dawn, Caucasian mountain mist in the background"
           fill
           priority
           sizes="100vw"
         />
       </div>
-      <div class="hero-ornament-bg" aria-hidden="true"></div>
+      <div class="hero-ornament-bg" aria-hidden="true" style="display:none"></div>
       <div class="hero__overlay"></div>
       <div class="hero__content">
         <p class="label anim-fade-in-up">Georgian Silver</p>
@@ -184,16 +184,16 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   ];
   readonly craftPhotos = [
     {
-      src: '/assets/images/craft/silver-detail.jpg',
-      alt: 'Close-up silver detail on handcrafted Georgian bracelet',
+      src: '/assets/images/craft/1.png',
+      alt: 'Handcrafted Georgian silver bracelet resting on green leaves in natural sunlight',
     },
     {
-      src: '/assets/images/craft/workbench.jpg',
-      alt: 'Dark wooden work surface with silver craft tools',
+      src: '/assets/images/craft/9.png',
+      alt: 'Handcrafted Georgian silver bracelet worn on a wrist, front view',
     },
     {
-      src: '/assets/images/craft/wrist-fitting.jpg',
-      alt: 'Handcrafted Georgian silver bracelet fitted on wrist',
+      src: '/assets/images/craft/10.png',
+      alt: 'Handcrafted Georgian silver bracelet worn on a wrist, back view',
     },
   ];
   readonly orderSteps = [
