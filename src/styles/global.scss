@@ -332,12 +332,80 @@ textarea {
     radial-gradient(circle at 50% 46%, rgba(183, 146, 80, 0.12), transparent 18rem),
     rgba(15, 16, 15, 0.82);
   color: var(--color-silver);
+  overflow: hidden;
+}
+
+.page-loader__stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  width: min(620px, 95vw);
+  padding-bottom: clamp(24px, 4vw, 40px);
+}
+
+.page-loader__owl {
+  width: clamp(180px, 32vw, 320px);
+  height: auto;
+  user-select: none;
+  pointer-events: none;
+  margin-right: clamp(-32px, -4vw, -16px);
+  filter: drop-shadow(0 0 28px rgba(183, 146, 80, 0.24));
+  animation:
+    owlAppear 0.7s ease-out forwards,
+    owlHover 3.6s ease-in-out 2.2s infinite;
 }
 
 .page-loader__logo {
-  width: min(320px, 82vw);
+  width: clamp(200px, 46vw, 300px);
   height: auto;
   filter: drop-shadow(0 0 28px rgba(183, 146, 80, 0.18));
+}
+
+.page-loader__branch {
+  position: absolute;
+  left: 22%;
+  right: 0;
+  bottom: clamp(20px, 3.5vw, 36px);
+  width: 78%;
+  height: clamp(46px, 6.5vw, 68px);
+  overflow: visible;
+  pointer-events: none;
+}
+
+.page-loader__branch-line {
+  fill: none;
+  stroke: var(--color-gold);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1 1;
+  stroke-dashoffset: 1;
+  vector-effect: non-scaling-stroke;
+  animation: branchDraw 1.6s ease-out 1.2s forwards;
+}
+
+.page-loader__branch-line:not(.page-loader__branch-line--twig):not(.page-loader__branch-line--leaf) {
+  stroke-width: 2.6;
+}
+
+.page-loader__branch-line--twig {
+  stroke-width: 1.6;
+  animation-delay: 2.2s;
+  animation-duration: 0.7s;
+}
+
+.page-loader__branch-line--leaf {
+  stroke-width: 1.4;
+  fill: var(--color-gold);
+  fill-opacity: 0;
+  animation:
+    branchDraw 0.5s ease-out 2.7s forwards,
+    leafFill 0.4s ease-out 3.1s forwards;
+}
+
+@keyframes leafFill {
+  to { fill-opacity: 0.55; }
 }
 
 .page-loader__text-line {
@@ -346,11 +414,11 @@ textarea {
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-dasharray: 0 420;
+  stroke-dasharray: 0 480;
   font-family: var(--font-display);
-  font-size: 80px;
+  font-size: 110px;
   font-weight: var(--weight-medium);
-  animation: loaderTextLineFill 2.5s linear forwards;
+  animation: loaderTextLineFill 2.2s linear 0.4s forwards;
 }
 
 .hero {
