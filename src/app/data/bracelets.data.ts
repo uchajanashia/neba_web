@@ -4,44 +4,39 @@ export const BRACELETS: Bracelet[] = [
   {
     id: 'bracelet-001',
     slug: 'pesvi',
-    name: 'ფესვი',
+    name: 'უსასრულობა',
     cardImage: '/assets/images/bracelets/pesvi/hero.jpg',
-    nameEn: 'Pesvi - Root',
-    tagline: 'Handcrafted silver bracelet inspired by Georgian ornamental lines.',
+    nameEn: 'Usasruloba - Infinity',
+    tagline: 'Handcrafted silver bracelet built from the infinity ornament.',
     shortDescription:
-      'A bracelet born from the ornamental language of old Georgian stone carvings. Its form expresses rootedness, origin, and connection.',
-    emotionalDescription:
-      'Made for those who carry tradition not as memory, but as presence.',
+      'The infinity lines fold into a cross at the center — two timeless symbols in one form.',
+    emotionalDescription: 'A mark of permanence and connection.',
     story:
-      '"Root" is inspired by the lines found in ancient Georgian stone reliefs and hand-carved artifacts. Its form speaks of solidity, origin, and a deep connection to the earth, tradition, and one\'s own path. Each curve was drawn from the visual archive of Georgian craftsmanship and translated into silver.',
+      'The infinity ornament closes into a cross at its center — two timeless symbols, one silver form.',
     content: {
       ka: {
-        tagline: 'ხელნაკეთი ვერცხლის სამაჯური ქართული ორნამენტული ხაზებით.',
+        tagline: 'ხელნაკეთი ვერცხლის სამაჯური უსასრულობის ორნამენტით.',
         shortDescription:
-          'სამაჯური, რომელიც ძველი ქართული ქვის კვეთის ორნამენტულ ენას ეყრდნობა. მისი ფორმა ფესვებს, საწყისს და კავშირს გამოხატავს.',
-        emotionalDescription:
-          'მათთვის, ვინც ტრადიციას არა როგორც მოგონებას, არამედ როგორც ცოცხალ ყოფნას ატარებს.',
+          'უსასრულობის ხაზებიდან აგებული სამაჯური — ცენტრში ჯვრის ფორმა იკვრება.',
+        emotionalDescription: 'მუდმივობისა და კავშირის ნიშანი.',
         story:
-          '"ფესვი" შთაგონებულია ძველ ქართულ ქვის რელიეფებსა და ხელით ნაკეთ არტეფაქტებში ნაპოვნი ხაზებით. მისი ფორმა სიმყარეზე, საწყისზე და მიწასთან, ტრადიციასთან და საკუთარ გზასთან ღრმა კავშირზე საუბრობს. ყოველი მრუდი ქართული ხელობის ვიზუალური არქივიდან მოდის და ვერცხლშია გადატანილი.',
+          'უსასრულობის ორნამენტი იკვრება ჯვრად — ორი მუდმივი სიმბოლო ერთ ვერცხლის ფორმაში.',
       },
       en: {
-        tagline: 'Handcrafted silver bracelet inspired by Georgian ornamental lines.',
+        tagline: 'Handcrafted silver bracelet built from the infinity ornament.',
         shortDescription:
-          'A bracelet born from the ornamental language of old Georgian stone carvings. Its form expresses rootedness, origin, and connection.',
-        emotionalDescription:
-          'Made for those who carry tradition not as memory, but as presence.',
+          'The infinity lines fold into a cross at the center — two timeless symbols in one form.',
+        emotionalDescription: 'A mark of permanence and connection.',
         story:
-          '"Root" is inspired by the lines found in ancient Georgian stone reliefs and hand-carved artifacts. Its form speaks of solidity, origin, and a deep connection to the earth, tradition, and one\'s own path. Each curve was drawn from the visual archive of Georgian craftsmanship and translated into silver.',
+          'The infinity ornament closes into a cross at its center — two timeless symbols, one silver form.',
       },
       ru: {
-        tagline:
-          'Серебряный браслет ручной работы, вдохновлённый грузинскими орнаментальными линиями.',
+        tagline: 'Серебряный браслет ручной работы из орнамента бесконечности.',
         shortDescription:
-          'Браслет, рождённый из орнаментального языка старинной грузинской каменной резьбы. Его форма говорит о корнях, начале и связи.',
-        emotionalDescription:
-          'Создан для тех, кто несёт традицию не как память, а как присутствие.',
+          'Линии бесконечности замыкаются в крест в центре — два вечных символа в одной форме.',
+        emotionalDescription: 'Знак постоянства и связи.',
         story:
-          '"Корень" вдохновлён линиями древних грузинских каменных рельефов и ручных артефактов. Его форма говорит о прочности, истоке и глубокой связи с землёй, традицией и собственным путём. Каждый изгиб взят из визуального архива грузинского мастерства и переведён в серебро.',
+          'Орнамент бесконечности складывается в крест — два вечных символа в одной серебряной форме.',
       },
     },
     materials: 'both',
