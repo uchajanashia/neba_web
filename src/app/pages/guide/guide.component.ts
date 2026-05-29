@@ -34,7 +34,7 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
           @for (row of rows; track row.wristSize) {
             <div>
               <span>{{ row.wristSize }}</span>
-              <strong>{{ recommendationLabel(row.recommendation) }}</strong>
+              <strong>{{ i18n.t(row.recommendationKey) }}</strong>
             </div>
           }
         </div>
@@ -94,17 +94,6 @@ export class GuideComponent implements OnInit {
   readonly i18n = inject(I18nService);
 
   readonly rows = SIZE_GUIDE;
-
-  recommendationLabel(value: string): string {
-    const keyByValue: Record<string, string> = {
-      Small: 'guide.size.rec.small',
-      Medium: 'guide.size.rec.medium',
-      Large: 'guide.size.rec.large',
-      'Custom - contact us': 'guide.size.rec.custom',
-    };
-
-    return this.i18n.t(keyByValue[value] ?? value);
-  }
 
   ngOnInit(): void {
     this.metaService.updateMeta({

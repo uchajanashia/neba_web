@@ -33,10 +33,20 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
         <div class="timeline">
           @for (step of steps; track step.number) {
             <article class="timeline__item" appScrollReveal [delay]="step.number * 90">
-              <span>{{ step.number }}</span>
-              <div>
-                <h2>{{ i18n.t('craft.step' + step.number + '.title') }}</h2>
-                <p>{{ i18n.t('craft.step' + step.number + '.text') }}</p>
+              <img
+                class="timeline__bg"
+                [ngSrc]="'/assets/images/craft/steps/step-' + step.number + '.jpg'"
+                [alt]="i18n.t('craft.step' + step.number + '.title')"
+                fill
+                sizes="100vw"
+              />
+              <div class="timeline__overlay"></div>
+              <div class="timeline__body">
+                <span>{{ step.number }}</span>
+                <div>
+                  <h2>{{ i18n.t('craft.step' + step.number + '.title') }}</h2>
+                  <p>{{ i18n.t('craft.step' + step.number + '.text') }}</p>
+                </div>
               </div>
             </article>
           }

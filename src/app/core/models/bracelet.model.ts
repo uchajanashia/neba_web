@@ -31,28 +31,12 @@ export interface BraceletDetail {
   order: string;
 }
 
-export interface BraceletLocalized {
-  tagline: string;
-  shortDescription: string;
-  emotionalDescription: string;
-  story: string;
-}
-
 export interface Bracelet {
   id: string;
   slug: string;
   name: string;
   cardImage: string;
   nameEn: string;
-  tagline: string;
-  shortDescription: string;
-  emotionalDescription: string;
-  story: string;
-  content: {
-    ka: BraceletLocalized;
-    en: BraceletLocalized;
-    ru: BraceletLocalized;
-  };
   materials: BraceletMaterial;
   sizes: BraceletSize[];
   images: BraceletImage[];

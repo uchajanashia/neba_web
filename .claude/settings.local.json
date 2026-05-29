@@ -19,7 +19,12 @@
       "Bash(awk 'BEGIN{p=0} /^<svg/{print \"<svg xmlns=\\\\\"http://www.w3.org/2000/svg\\\\\" viewBox=\\\\\"0 0 666.66669 666.66669\\\\\">\"; print \"  <style>\"; print \"    .owl-stroke {\"; print \"      fill: none;\"; print \"      stroke: #b79250;\"; print \"      stroke-width: 3;\"; print \"      stroke-linecap: round;\"; print \"      stroke-linejoin: round;\"; print \"      stroke-dasharray: 1 1;\"; print \"      stroke-dashoffset: 1;\"; print \"      animation: owlDraw 2.6s ease-out 0.2s forwards, owlBreath 3.4s ease-in-out 3s infinite;\"; print \"    }\"; print \"    @keyframes owlDraw { to { stroke-dashoffset: 0; } }\"; print \"    @keyframes owlBreath { 0%,100% { stroke-width: 3; } 50% { stroke-width: 3.6; } }\"; print \"  </style>\"; p=1; next} /<g/{if\\(p==1\\){p=2}} p>=2{print} /<\\\\/svg>/{exit}' 6713428.svg)",
       "Bash(sed -i 's| *clip-path=\"url\\(#[^\"]*\\)\"||g; s|style=\"fill:none;stroke:#1c1c1b;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1\"|class=\"owl-stroke\" pathLength=\"1\"|g; s|inkscape:label=\"[^\"]*\"||g; s|inkscape:groupmode=\"[^\"]*\"||g' public/assets/logo/owl.svg)",
       "Bash(grep -B1 'class=\"owl-stroke\"$' public/assets/logo/owl.svg)",
-      "Bash(awk '/<path/{p=NR} /class=\"owl-stroke\"$/{if\\(p>0\\)print \"MISSING pathLength near line \" p}' public/assets/logo/owl.svg)"
+      "Bash(awk '/<path/{p=NR} /class=\"owl-stroke\"$/{if\\(p>0\\)print \"MISSING pathLength near line \" p}' public/assets/logo/owl.svg)",
+      "PowerShell(git -C \"c:\\\\Users\\\\Administrator\\\\Documents\\\\GitHub\\\\neba_web\" ls-files)",
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\Administrator\\\\Documents\\\\GitHub\\\\neba_web\\\\src\\\\app\\\\data\" -File -Recurse)",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(npx tsc *)",
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\Users\\\\Administrator\\\\Documents\\\\GitHub\\\\neba_web\\\\public\\\\assets\\\\images\\\\craft\\\\steps\")"
     ]
   }
 }

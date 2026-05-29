@@ -30,7 +30,7 @@ import { I18nService } from '../../../core/services/i18n.service';
         <a [routerLink]="['/bracelets', bracelet().slug]">
           <h3 class="bracelet-card__name">{{ bracelet().name }}</h3>
         </a>
-        <p class="bracelet-card__tagline">{{ localizedContent().tagline }}</p>
+        <p class="bracelet-card__tagline">{{ i18n.t('bracelet.' + bracelet().slug + '.tagline') }}</p>
         <p class="bracelet-card__material">
           {{ i18n.t('card.material_label') }}:
           {{ translateDetailValue(bracelet().details.material) }} /
@@ -63,9 +63,6 @@ export class BraceletCardComponent {
     src: this.bracelet().cardImage,
     alt: this.bracelet().name + ' handcrafted silver bracelet',
   }));
-  readonly localizedContent = computed(
-    () => this.bracelet().content[this.i18n.lang()] ?? this.bracelet().content.en,
-  );
 
   translateDetailValue(value: string): string {
     const keyByValue: Record<string, string> = {

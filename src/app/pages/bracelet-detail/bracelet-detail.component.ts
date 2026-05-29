@@ -63,7 +63,7 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
             <p class="label">{{ i18n.t('detail.label') }}</p>
             <h1>{{ item.name }}</h1>
             <p class="detail-info__en">{{ item.nameEn }}</p>
-            <p class="detail-info__emotion">{{ localizedContent()?.emotionalDescription }}</p>
+            <p class="detail-info__emotion">{{ i18n.t('bracelet.' + item.slug + '.emotionalDescription') }}</p>
             <ul class="ornament-list">
               <li>{{ i18n.t('detail.features.silver') }}</li>
               <li>{{ i18n.t('detail.features.ornament') }}</li>
@@ -161,7 +161,7 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
       <section class="section product-story">
         <div class="container container--narrow" appScrollReveal>
           <p class="label">{{ i18n.t('detail.story.heading') }}</p>
-          <h2>{{ localizedContent()?.story }}</h2>
+          <h2>{{ i18n.t('bracelet.' + item.slug + '.story') }}</h2>
         </div>
       </section>
 
@@ -402,10 +402,6 @@ export class BraceletDetailComponent {
     initialValue: '',
   });
   readonly bracelet = computed(() => getBraceletBySlug(this.slug()));
-  readonly localizedContent = computed(() => {
-    const item = this.bracelet();
-    return item?.content[this.i18n.lang()] ?? item?.content.en ?? null;
-  });
   readonly activeVariantImage = computed(() => {
     const item = this.bracelet();
 
@@ -465,7 +461,6 @@ export class BraceletDetailComponent {
 
     effect(() => {
       const item = this.bracelet();
-      const content = this.localizedContent();
 
       if (!item && this.slug()) {
         void this.router.navigateByUrl('/bracelets');
@@ -475,7 +470,7 @@ export class BraceletDetailComponent {
       if (item) {
         this.metaService.updateMeta({
           title: `${item.nameEn} - Georgian Silver Bracelet`,
-          description: content?.shortDescription ?? item.shortDescription,
+          description: this.i18n.t(`bracelet.${item.slug}.shortDescription`),
           image: item.cardImage,
         });
       }
