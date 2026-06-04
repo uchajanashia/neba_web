@@ -35,7 +35,7 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
             <article class="timeline__item" appScrollReveal [delay]="step.number * 90">
               <img
                 class="timeline__bg"
-                [ngSrc]="'/assets/images/craft/steps/step-' + step.number + '.jpg'"
+                [ngSrc]="'/assets/images/craft/steps/step-' + step.number + '.webp'"
                 [alt]="i18n.t('craft.step' + step.number + '.title')"
                 fill
                 sizes="100vw"
