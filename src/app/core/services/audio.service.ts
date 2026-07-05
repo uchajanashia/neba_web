@@ -23,7 +23,7 @@ export class AudioService {
     if (!this.audio) {
       this.audio = new Audio('/background_music.mp3');
       this.audio.loop = true;
-      this.audio.volume = 0.01;
+      this.audio.volume = 0.005;
       this.audio.preload = 'auto';
     }
     return this.audio;

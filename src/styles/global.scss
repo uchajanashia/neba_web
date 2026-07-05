@@ -593,7 +593,7 @@ textarea {
   z-index: -1;
   background:
     var(--gradient-page-hero-overlay),
-    url('/assets/images/hero/stone-hero.jpg') center/cover;
+    url('/assets/images/hero/stone-hero.webp') center/cover;
   opacity: 0.92;
 }
 
@@ -835,7 +835,7 @@ textarea {
   text-align: center;
   background:
     var(--gradient-final-cta-overlay),
-    url('/assets/images/hero/stone-hero.jpg') center/cover fixed;
+    url('/assets/images/hero/stone-hero.webp') center/cover fixed;
 }
 
 .final-cta--compact {

@@ -13,7 +13,7 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
     <section class="page-hero page-hero--image">
       <div class="page-hero__image">
         <img
-          ngSrc="/assets/images/craft/2.png"
+          ngSrc="/assets/images/craft/2.webp"
           alt="Silver craft tools arranged on the workbench, ready for the start of the process"
           fill
           priority
@@ -63,7 +63,7 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
         </div>
         <figure class="wide-photo" appScrollReveal [delay]="140">
           <img
-            ngSrc="/assets/images/craft/7.png"
+            ngSrc="/assets/images/craft/7.webp"
             alt="Artisan inspecting the finished handcrafted bu-neba silver bracelet in his hands"
             fill
             sizes="(max-width: 760px) 90vw, 44vw"
@@ -93,12 +93,12 @@ export class CraftComponent implements OnInit {
 
   readonly steps = CRAFT_STEPS;
   readonly gallery = [
-    { src: '/assets/images/craft/3.png', alt: 'Silver detail being polished by hand to bring back its shine' },
-    { src: '/assets/images/craft/4.png', alt: 'Leather strap being prepared and shaped by hand' },
-    { src: '/assets/images/craft/5.png', alt: 'Small silver details being attached onto the leather strap' },
-    { src: '/assets/images/craft/6.png', alt: 'Central silver ornament being assembled onto the bracelet' },
-    { src: '/assets/images/craft/10.png', alt: 'Finished handcrafted bracelet worn on a wrist, back side view' },
-    { src: '/assets/images/craft/8.png', alt: 'Back side fastening detail of the handcrafted bracelet' },
+    { src: '/assets/images/craft/3.webp', alt: 'Silver detail being polished by hand to bring back its shine' },
+    { src: '/assets/images/craft/4.webp', alt: 'Leather strap being prepared and shaped by hand' },
+    { src: '/assets/images/craft/5.webp', alt: 'Small silver details being attached onto the leather strap' },
+    { src: '/assets/images/craft/6.webp', alt: 'Central silver ornament being assembled onto the bracelet' },
+    { src: '/assets/images/craft/10.webp', alt: 'Finished handcrafted bracelet worn on a wrist, back side view' },
+    { src: '/assets/images/craft/8.webp', alt: 'Back side fastening detail of the handcrafted bracelet' },
   ];
 
   ngOnInit(): void {

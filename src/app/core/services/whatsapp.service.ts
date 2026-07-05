@@ -27,17 +27,22 @@ export class WhatsAppService {
     bracelet: Bracelet,
     wristCm: number,
     selectedStrap: BraceletStrapType,
-    selectedContentSize: BraceletContentSize,
+    selectedContentSize: BraceletContentSize | null,
   ): string {
     const cm = Number.isInteger(wristCm) ? String(wristCm) : wristCm.toFixed(1);
     const lines = [
       `🦉 ბუ-ნება — ${bracelet.name}`,
       `${this.i18n.t('variant.size.label')}: ${cm} cm`,
       `${this.i18n.t('variant.strap.label')}: ${this.i18n.t(STRAP_KEY[selectedStrap])}`,
-      `${this.i18n.t('variant.content_size.label')}: ${this.i18n.t(CONTENT_KEY[selectedContentSize])}`,
-      '',
-      `${SITE_URL}/bracelets/${bracelet.slug}`,
     ];
+
+    if (selectedContentSize) {
+      lines.push(
+        `${this.i18n.t('variant.content_size.label')}: ${this.i18n.t(CONTENT_KEY[selectedContentSize])}`,
+      );
+    }
+
+    lines.push('', `${SITE_URL}/bracelets/${bracelet.slug}`);
 
     return this.toWaLink(lines.join('\n'));
   }

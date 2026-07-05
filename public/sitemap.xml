@@ -7,7 +7,7 @@
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://bu-neba.ge/assets/images/hero/stone-hero.jpg</image:loc>
+      <image:loc>https://bu-neba.ge/assets/images/hero/stone-hero.webp</image:loc>
       <image:title>ბუ-ნება — ქართული ხელნაკეთი ვერცხლის სამაჯურები</image:title>
     </image:image>
   </url>
@@ -23,7 +23,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://bu-neba.ge/assets/images/bracelets/pesvi/hero.jpg</image:loc>
+      <image:loc>https://bu-neba.ge/assets/images/bracelets/pesvi/hero.webp</image:loc>
       <image:title>ფესვი — ხელნაკეთი ვერცხლის სამაჯური</image:title>
     </image:image>
   </url>
@@ -33,7 +33,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://bu-neba.ge/assets/images/bracelets/mcveli/hero.jpg</image:loc>
+      <image:loc>https://bu-neba.ge/assets/images/bracelets/mcveli/hero.webp</image:loc>
       <image:title>მცველი — ხელნაკეთი ვერცხლის სამაჯური</image:title>
     </image:image>
   </url>
@@ -43,7 +43,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://bu-neba.ge/assets/images/bracelets/mtis-kvali/hero.jpg</image:loc>
+      <image:loc>https://bu-neba.ge/assets/images/bracelets/mtis-kvali/hero.webp</image:loc>
       <image:title>მთის კვალი — ხელნაკეთი ვერცხლის სამაჯური</image:title>
     </image:image>
   </url>

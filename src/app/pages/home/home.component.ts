@@ -32,7 +32,7 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
     <section class="hero hero--home">
       <div class="hero__media">
         <img
-          ngSrc="/assets/images/hero/stone-hero.jpg"
+          ngSrc="/assets/images/hero/stone-hero.webp"
           alt="Three handcrafted bu-neba silver bracelets on a mossy mountain fortress stone at dawn, Caucasian mountain mist in the background"
           fill
           priority
@@ -184,15 +184,15 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   ];
   readonly craftPhotos = [
     {
-      src: '/assets/images/craft/1.png',
+      src: '/assets/images/craft/1.webp',
       alt: 'Handcrafted bu-neba silver bracelet resting on green leaves in natural sunlight',
     },
     {
-      src: '/assets/images/craft/9.png',
+      src: '/assets/images/craft/9.webp',
       alt: 'Handcrafted bu-neba silver bracelet worn on a wrist, front view',
     },
     {
-      src: '/assets/images/craft/10.png',
+      src: '/assets/images/craft/10.webp',
       alt: 'Handcrafted bu-neba silver bracelet worn on a wrist, back view',
     },
   ];
@@ -216,7 +216,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       title: 'bu-neba — Georgian Handcrafted Silver Bracelets',
       description:
         'Premium handcrafted silver bracelets inspired by Georgian ornament, tradition and nature. Order via Messenger or Instagram.',
-      image: '/assets/images/hero/stone-hero.jpg',
+      image: '/assets/logo/og-image.jpg',
     });
   }
 

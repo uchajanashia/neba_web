@@ -46,3 +46,6 @@ desktop.ini
 
 # Archived old/unused files
 /olds
+
+# Temporary photo conversion workspace
+/converttowebp

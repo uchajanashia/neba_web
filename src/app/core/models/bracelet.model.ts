@@ -35,7 +35,11 @@ export interface Bracelet {
   id: string;
   slug: string;
   name: string;
+  /** Available silver-piece sizes; omit for both. A single entry hides the selector. */
+  contentSizes?: BraceletContentSize[];
   cardImage: string;
+  /** JPEG version for social link previews — some crawlers don't render WebP og:image */
+  ogImage?: string;
   nameEn: string;
   materials: BraceletMaterial;
   sizes: BraceletSize[];

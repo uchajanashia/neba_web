@@ -116,29 +116,31 @@ import { WristSizeSliderComponent } from '../../shared/components/wrist-size-sli
                 </div>
               </div>
 
-              <div class="variant-group">
-                <div class="variant-group__header">
-                  <span class="variant-group__label">{{ i18n.t('variant.content_size.label') }}</span>
+              @if (contentSizeOptions().length > 1) {
+                <div class="variant-group">
+                  <div class="variant-group__header">
+                    <span class="variant-group__label">{{ i18n.t('variant.content_size.label') }}</span>
+                  </div>
+                  <div
+                    class="variant-group__options"
+                    role="group"
+                    [attr.aria-label]="i18n.t('variant.content_size.aria')"
+                  >
+                    @for (opt of contentSizeOptions(); track opt.value) {
+                      <button
+                        type="button"
+                        class="variant-btn variant-btn--content"
+                        [class.variant-btn--active]="selectedContentSize() === opt.value"
+                        (click)="selectedContentSize.set(opt.value)"
+                        [attr.aria-pressed]="selectedContentSize() === opt.value"
+                      >
+                        <span class="variant-btn__main">{{ getContentSizeLabel(opt.value) }}</span>
+                        <span class="variant-btn__sub">{{ getContentSizeDescription(opt.value) }}</span>
+                      </button>
+                    }
+                  </div>
                 </div>
-                <div
-                  class="variant-group__options"
-                  role="group"
-                  [attr.aria-label]="i18n.t('variant.content_size.aria')"
-                >
-                  @for (opt of contentSizeOptions; track opt.value) {
-                    <button
-                      type="button"
-                      class="variant-btn variant-btn--content"
-                      [class.variant-btn--active]="selectedContentSize() === opt.value"
-                      (click)="selectedContentSize.set(opt.value)"
-                      [attr.aria-pressed]="selectedContentSize() === opt.value"
-                    >
-                      <span class="variant-btn__main">{{ getContentSizeLabel(opt.value) }}</span>
-                      <span class="variant-btn__sub">{{ getContentSizeDescription(opt.value) }}</span>
-                    </button>
-                  }
-                </div>
-              </div>
+              }
             </div>
 
             <app-cta-buttons layout="column" [whatsappHref]="whatsappLink()" />
@@ -513,7 +515,12 @@ export class BraceletDetailComponent {
   readonly selectedContentSize = signal<BraceletContentSize>('large');
   readonly sizeOptions = SIZE_OPTIONS;
   readonly strapOptions = STRAP_OPTIONS;
-  readonly contentSizeOptions = CONTENT_SIZE_OPTIONS;
+  readonly contentSizeOptions = computed(() => {
+    const available = this.bracelet()?.contentSizes;
+    return available
+      ? CONTENT_SIZE_OPTIONS.filter((opt) => available.includes(opt.value))
+      : CONTENT_SIZE_OPTIONS;
+  });
   readonly slug = toSignal(this.route.paramMap.pipe(map((params) => params.get('slug') ?? '')), {
     initialValue: '',
   });
@@ -549,7 +556,7 @@ export class BraceletDetailComponent {
   readonly activeImage = computed(() => {
     const item = this.bracelet();
     return item?.images[this.activeImageIndex()] ?? item?.images[0] ?? {
-      src: '/assets/images/hero/stone-hero.jpg',
+      src: '/assets/images/hero/stone-hero.webp',
       alt: 'bu-neba silver bracelet',
       role: 'hero' as const,
     };
@@ -566,7 +573,7 @@ export class BraceletDetailComponent {
       item,
       this.selectedWristCm(),
       this.selectedStrap(),
-      this.selectedContentSize(),
+      this.contentSizeOptions().length > 1 ? this.selectedContentSize() : null,
     );
   });
 
@@ -598,7 +605,7 @@ export class BraceletDetailComponent {
         this.metaService.updateMeta({
           title: `${item.nameEn} — bu-neba`,
           description: this.i18n.t(`bracelet.${item.slug}.shortDescription`),
-          image: item.cardImage,
+          image: item.ogImage ?? item.cardImage,
           url: `/bracelets/${item.slug}`,
         });
       }

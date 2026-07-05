@@ -40,7 +40,7 @@ export const en: TranslationMap = {
 
   'home.hero.heading': 'Georgian Handcrafted Objects That Carry Character',
   'home.hero.subheading':
-    'bu-neba creates objects where Georgian ornament, natural material, silver, and the inner will of a person come together in one form.',
+    'bu-neba creates handcrafted objects that are more than jewellery — a unity of Georgian history, faith, ornament, and natural material. An object that carries meaning.',
   'home.hero.caption': 'Handcrafted Objects / Georgian Ornament / Natural Material / Individual Character',
   'home.pillars.label': 'What bu-neba is built on',
   'home.pillars.tradition.title': 'Tradition',
@@ -54,7 +54,7 @@ export const en: TranslationMap = {
     'Wood, stone, earth, mountain, and silver are part of our visual language. bu-neba stands close to nature — in material and in spirit.',
   'home.featured.heading': 'Our Bracelets',
   'home.featured.subtitle':
-    'Our first collection brings together handcrafted silver, Georgian ornament, and the character of natural material. This is the beginning of bu-neba — the first form of the craft.',
+    'Three bracelets. Three symbols. One Georgian spirit. Mcveli — the power of the Bolnisi cross and a sign of spiritual protection; Mtis Kvali — a symbol of roots, the path, and Georgian strength; Usasruloba — a cross created as a sign of eternal connection.',
   'home.featured.btn': 'View Full Collection',
   'home.craft.label': 'Craft',
   'home.craft.heading': 'Craft That Becomes an Object',
@@ -74,7 +74,7 @@ export const en: TranslationMap = {
 
   'collection.heading': 'Handcrafted Collection',
   'collection.subtitle':
-    'Objects made with Georgian ornament, natural materials, and individual character. Today the collection begins with silver bracelets — but the idea of bu-neba does not end with one material.',
+    'Three bracelets. Three symbols. One Georgian spirit. All are made with natural leather or rubber, silver, and wood elements — every detail is worked by hand and carries the Georgian cultural code. A psalm is placed inside each bracelet — a silent prayer that gives the piece a personal, spiritual meaning.',
   'collection.tab.bracelets': 'Bracelets',
   'collection.tab.rings': 'Rings',
   'collection.tab.pendants': 'Pendants',
@@ -284,32 +284,30 @@ export const en: TranslationMap = {
   'contact.process.step3.title': 'We Deliver the Piece',
   'contact.process.step3.text': 'Delivery by personal arrangement.',
 
-  'footer.tagline': 'Georgian handcrafted objects — tradition, nature, and will.',
+  'footer.tagline': 'bu-neba — handcrafted objects that carry history.',
   'footer.contact': 'Contact',
   'footer.rights': 'All rights reserved.',
 
   // Bracelet content
-  'bracelet.pesvi.tagline': 'A handcrafted silver bracelet built from the infinity ornament.',
+  'bracelet.pesvi.tagline': 'A bracelet where the infinity ornament becomes the form of a cross.',
   'bracelet.pesvi.shortDescription':
-    'A bracelet built from the lines of infinity, where a cross form closes at the centre.',
-  'bracelet.pesvi.emotionalDescription': 'A sign of connection, permanence, and inner calm.',
+    'Usasruloba — a bracelet where the infinity ornament becomes the form of a cross. Made with natural leather or rubber, silver, and wood. A psalm is placed inside.',
+  'bracelet.pesvi.emotionalDescription': 'Usasruloba — faith that has no end.',
   'bracelet.pesvi.story':
-    '"Pesvi" unites two symbols — the line of infinity and the form of the cross. The ornament enclosed in silver reminds us of what grounds a person: root, faith, connection, and a path that is never lost.',
+    '"Usasruloba" (Infinity) is a bracelet where the cross is formed from the infinity ornament. It unites two ideas: the cross — a symbol of faith, sanctity, and spiritual protection — and infinity, a sign of eternity, continuity, and unending connection. Here the Georgian ornament transforms into the shape of a cross — tradition and a new vision in one. It is for those who believe that true connection does not end with time. A psalm is placed inside, as a silent prayer and a sign of eternal spiritual connection.',
 
-  'bracelet.mcveli.tagline': 'A strong silver bracelet inspired by old Georgian character.',
+  'bracelet.mcveli.tagline': 'A bracelet inspired by the Bolnisi cross.',
   'bracelet.mcveli.shortDescription':
-    '"Mcveli" is a bracelet of clear form, where the spirit of Georgian protective symbolism and a strong silver line come together.',
-  'bracelet.mcveli.emotionalDescription':
-    'For those who carry their identity calmly, firmly, and without unnecessary noise.',
+    'Mcveli — a bracelet inspired by the Bolnisi cross, uniting a Georgian Christian symbol, natural materials, and spiritual meaning. Made with natural leather or rubber, silver, and wood. A psalm is placed inside.',
+  'bracelet.mcveli.emotionalDescription': 'Mcveli — faith that stays with you.',
   'bracelet.mcveli.story':
-    '"Mcveli" is inspired by old Georgian ornaments, cross forms, and protective symbolism that appeared for centuries in stone, wood, and metal. Its silver form is firm, clear, and dignified — like a mark that reminds a person of their own strength.',
+    '"Mcveli" (Guardian) is inspired by the Bolnisi cross — one of the oldest Georgian Christian symbols, first found on the Bolnisi Sioni basilica built at the end of the 5th century, around 478–493 AD. The flared cross set within a circle is a sign of eternity, completeness, and endlessness, and remains a powerful mark of Georgian identity today. "Mcveli" turns this historical and spiritual weight into an everyday object — for those who wish to carry faith, roots, and inner strength. A psalm is placed inside, as a silent prayer and a sign of spiritual protection.',
 
   'bracelet.mtis-kvali.tagline':
-    'A bracelet inspired by nature, stone, and the silver light of mountains.',
+    'A sign of roots, the path, and Georgian strength.',
   'bracelet.mtis-kvali.shortDescription':
-    '"Mtis Kvali" translates the spirit of Georgian mountains, stone texture, and cold light into a wearable form.',
-  'bracelet.mtis-kvali.emotionalDescription':
-    'For those who find calm in the mountain, in stone, in air, and in the silent force of nature.',
+    'Mtis Kvali — a bracelet inspired by the Bolnisi cross, uniting Georgian roots, the strength of the mountains, natural materials, and a symbol of faith. Made with natural leather or rubber, silver, and wood. A psalm is placed inside.',
+  'bracelet.mtis-kvali.emotionalDescription': 'Mtis Kvali — roots that show you the way.',
   'bracelet.mtis-kvali.story':
-    '"Mtis Kvali" is inspired by the Georgian mountain landscape — the rough geometry of rock, the trace of ancient paths, and the light that moves slowly across stone. The silver surface captures this spirit and gives the bracelet a natural, calm, and strong character.',
+    '"Mtis Kvali" (Mountain\'s Trace) carries a bond with the Georgian mountains, roots, and the trace of ancestors. Its central symbol is also the Bolnisi cross — an ancient Georgian Christian sign whose open form expresses calm and strength at once. It is a path that returns a person to their origin — a trace that is never lost, because it remains in the earth, in memory, and in faith. Leather or rubber gives it a durable everyday form, silver underlines its purity, and wood strengthens its bond with nature and the earth. The psalm placed inside gives the bracelet a personal spiritual meaning.',
 };
