@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://bu-neba.ge/</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://bu-neba.ge/assets/images/hero/stone-hero.jpg</image:loc>
+      <image:title>ბუ-ნება — ქართული ხელნაკეთი ვერცხლის სამაჯურები</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://bu-neba.ge/bracelets</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://bu-neba.ge/bracelets/pesvi</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://bu-neba.ge/assets/images/bracelets/pesvi/hero.jpg</image:loc>
+      <image:title>ფესვი — ხელნაკეთი ვერცხლის სამაჯური</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://bu-neba.ge/bracelets/mcveli</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://bu-neba.ge/assets/images/bracelets/mcveli/hero.jpg</image:loc>
+      <image:title>მცველი — ხელნაკეთი ვერცხლის სამაჯური</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://bu-neba.ge/bracelets/mtis-kvali</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://bu-neba.ge/assets/images/bracelets/mtis-kvali/hero.jpg</image:loc>
+      <image:title>მთის კვალი — ხელნაკეთი ვერცხლის სამაჯური</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://bu-neba.ge/craft</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://bu-neba.ge/guide</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://bu-neba.ge/contact</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+</urlset>

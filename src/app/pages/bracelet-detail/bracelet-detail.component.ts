@@ -18,9 +18,12 @@ import type {
 } from '../../core/models/bracelet.model';
 import { I18nService } from '../../core/services/i18n.service';
 import { MetaService } from '../../core/services/meta.service';
+import { VideoModalService } from '../../core/services/video-modal.service';
+import { WhatsAppService } from '../../core/services/whatsapp.service';
 import { BraceletCardComponent } from '../../shared/components/bracelet-card/bracelet-card.component';
 import { CtaButtonsComponent } from '../../shared/components/cta-buttons/cta-buttons.component';
 import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.directive';
+import { WristSizeSliderComponent } from '../../shared/components/wrist-size-slider/wrist-size-slider.component';
 
 @Component({
   selector: 'app-bracelet-detail',
@@ -29,6 +32,7 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
     BraceletCardComponent,
     CtaButtonsComponent,
     ScrollRevealDirective,
+    WristSizeSliderComponent,
   ],
   template: `
     @if (bracelet(); as item) {
@@ -60,43 +64,30 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
           </div>
 
           <div class="detail-info" appScrollReveal [delay]="160">
-            <p class="label">{{ i18n.t('detail.label') }}</p>
             <h1>{{ item.name }}</h1>
-            <p class="detail-info__en">{{ item.nameEn }}</p>
             <p class="detail-info__emotion">{{ i18n.t('bracelet.' + item.slug + '.emotionalDescription') }}</p>
-            <ul class="ornament-list">
-              <li>{{ i18n.t('detail.features.silver') }}</li>
-              <li>{{ i18n.t('detail.features.ornament') }}</li>
-              <li>{{ i18n.t('detail.features.strap') }}</li>
-              <li>{{ i18n.t('detail.features.size') }}</li>
-              <li>{{ i18n.t('detail.features.custom') }}</li>
-            </ul>
 
             <div class="variant-selector">
               <div class="variant-group">
                 <div class="variant-group__header">
                   <span class="variant-group__label">{{ i18n.t('variant.size.label') }}</span>
-                  <span class="variant-group__hint">{{ getSizeHint() }}</span>
+                  <button
+                    type="button"
+                    class="size-help-btn"
+                    (click)="openSizeVideo()"
+                  >
+                    <span class="size-help-btn__icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </span>
+                    <span class="size-help-btn__label">{{ i18n.t('detail.size.video.cta') }}</span>
+                  </button>
                 </div>
-                <div
-                  class="variant-group__options"
-                  role="group"
-                  [attr.aria-label]="i18n.t('variant.size.aria')"
-                >
-                  @for (opt of sizeOptions; track opt.value) {
-                    <button
-                      type="button"
-                      class="variant-btn variant-btn--size"
-                      [class.variant-btn--active]="selectedSize() === opt.value"
-                      (click)="selectedSize.set(opt.value)"
-                      [attr.aria-pressed]="selectedSize() === opt.value"
-                      [attr.aria-label]="opt.label + ' - ' + opt.cm"
-                    >
-                      <span class="variant-btn__main">{{ opt.label }}</span>
-                      <span class="variant-btn__sub">{{ opt.cm }}</span>
-                    </button>
-                  }
-                </div>
+                <app-wrist-size-slider
+                  [(value)]="selectedWristCm"
+                  [ariaLabel]="i18n.t('variant.size.aria')"
+                />
               </div>
 
               <div class="variant-group">
@@ -150,7 +141,7 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
               </div>
             </div>
 
-            <app-cta-buttons layout="column" />
+            <app-cta-buttons layout="column" [whatsappHref]="whatsappLink()" />
             <p class="fine-print">
               {{ i18n.t('detail.note') }}
             </p>
@@ -240,9 +231,9 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
       .variant-selector {
         display: flex;
         flex-direction: column;
-        gap: var(--space-6);
-        margin-block: var(--space-6);
-        padding-block: var(--space-6);
+        gap: var(--space-4);
+        margin-block: var(--space-4);
+        padding-block: var(--space-4);
         border-top: 1px solid var(--color-border);
         border-bottom: 1px solid var(--color-border);
       }
@@ -250,7 +241,7 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
       .variant-group {
         display: flex;
         flex-direction: column;
-        gap: var(--space-3);
+        gap: var(--space-2);
       }
 
       .variant-group__header {
@@ -264,7 +255,7 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
       .variant-group__label {
         color: var(--color-text-primary);
         font-family: var(--font-body);
-        font-size: var(--text-xs);
+        font-size: var(--text-sm);
         font-weight: var(--weight-medium);
         letter-spacing: var(--tracking-normal);
         text-transform: uppercase;
@@ -273,7 +264,7 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
       .variant-group__hint {
         color: var(--color-gold);
         font-family: var(--font-body);
-        font-size: var(--text-xs);
+        font-size: var(--text-sm);
         letter-spacing: var(--tracking-normal);
       }
 
@@ -285,12 +276,12 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
 
       .variant-btn {
         display: flex;
-        min-width: 64px;
+        min-width: 56px;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         gap: 2px;
-        padding: var(--space-2) var(--space-4);
+        padding: 0.4rem var(--space-3);
         border: 1px solid var(--color-border);
         border-radius: var(--radius-sm);
         background: transparent;
@@ -304,7 +295,7 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
       .variant-btn__main {
         color: var(--color-text-muted);
         font-family: var(--font-body);
-        font-size: var(--text-sm);
+        font-size: var(--text-base);
         font-weight: var(--weight-medium);
         line-height: 1.2;
         transition: color 0.3s ease;
@@ -314,7 +305,7 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
       .variant-btn__sub {
         color: var(--color-text-faint);
         font-family: var(--font-body);
-        font-size: var(--text-xs);
+        font-size: var(--text-sm);
         line-height: 1.25;
         transition: color 0.3s ease;
         white-space: nowrap;
@@ -356,30 +347,146 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
       }
 
       .variant-btn--strap {
-        min-width: 130px;
+        min-width: 120px;
         flex-direction: row;
         align-items: center;
         gap: var(--space-2);
-        padding: var(--space-2) var(--space-5);
+        padding: 0.4rem var(--space-4);
       }
 
       .variant-btn--content {
-        min-width: 140px;
+        min-width: 120px;
         flex: 1;
         flex-direction: row;
         justify-content: flex-start;
         gap: var(--space-3);
-        padding: var(--space-3) var(--space-5);
+        padding: 0.5rem var(--space-4);
         text-align: left;
       }
 
       .variant-btn--content .variant-btn__main {
-        font-size: var(--text-sm);
+        font-size: var(--text-base);
       }
 
       .variant-btn--content .variant-btn__sub {
-        font-size: var(--text-xs);
+        font-size: var(--text-sm);
         white-space: normal;
+      }
+
+      .size-help-btn {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.35rem 0.7rem 0.35rem 0.4rem;
+        border: 1px solid var(--color-gold);
+        border-radius: 999px;
+        background: linear-gradient(
+          100deg,
+          var(--color-gold-muted) 0%,
+          var(--color-gold) 55%,
+          var(--color-gold-muted) 100%
+        );
+        background-size: 200% 100%;
+        color: var(--color-btn-primary-text);
+        font-family: var(--font-body);
+        font-size: var(--text-xs);
+        font-weight: var(--weight-semi);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        cursor: pointer;
+        overflow: hidden;
+        white-space: nowrap;
+        box-shadow:
+          0 4px 14px rgba(168, 130, 60, 0.32),
+          0 0 0 0 var(--color-surface-gold-tint);
+        animation: sizeHelpPulse 2.6s ease-in-out infinite;
+        transition:
+          transform 0.25s cubic-bezier(0.2, 0.85, 0.3, 1),
+          box-shadow 0.3s ease,
+          background-position 0.6s ease;
+      }
+
+      .size-help-btn::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.32),
+          transparent
+        );
+        transform: translateX(-100%);
+        transition: transform 0.9s ease;
+        pointer-events: none;
+      }
+
+      .size-help-btn:hover {
+        transform: translateY(-2px) scale(1.02);
+        background-position: 100% 0;
+        box-shadow:
+          0 12px 32px rgba(168, 130, 60, 0.42),
+          0 0 0 8px var(--color-surface-gold-tint);
+        animation-play-state: paused;
+      }
+
+      .size-help-btn:hover::before {
+        transform: translateX(100%);
+      }
+
+      .size-help-btn:active {
+        transform: translateY(0) scale(1);
+      }
+
+      .size-help-btn:focus-visible {
+        outline: 3px solid var(--color-focus-ring);
+        outline-offset: 3px;
+      }
+
+      .size-help-btn__icon {
+        display: grid;
+        place-items: center;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.25);
+        flex-shrink: 0;
+      }
+
+      .size-help-btn__icon svg {
+        width: 0.5rem;
+        height: 0.5rem;
+        margin-inline-start: 1px;
+      }
+
+      .size-help-btn__label {
+        white-space: nowrap;
+      }
+
+      @keyframes sizeHelpPulse {
+        0%, 100% {
+          box-shadow:
+            0 8px 24px rgba(168, 130, 60, 0.32),
+            0 0 0 0 var(--color-surface-gold-tint);
+        }
+        50% {
+          box-shadow:
+            0 10px 28px rgba(168, 130, 60, 0.4),
+            0 0 0 10px rgba(168, 130, 60, 0);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .size-help-btn {
+          animation: none;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .size-help-btn {
+          padding: 0.4rem 0.7rem;
+        }
       }
     `,
   ],
@@ -389,10 +496,19 @@ export class BraceletDetailComponent {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly metaService = inject(MetaService);
+  private readonly videoModal = inject(VideoModalService);
+  private readonly whatsappService = inject(WhatsAppService);
   readonly i18n = inject(I18nService);
 
   readonly activeImageIndex = signal(0);
-  readonly selectedSize = signal<BraceletSizeOption>('M');
+  readonly selectedWristCm = signal<number>(17);
+  readonly selectedSize = computed<BraceletSizeOption>(() => {
+    const cm = this.selectedWristCm();
+    if (cm <= 16.5) return 'S';
+    if (cm <= 18.5) return 'M';
+    if (cm <= 20.5) return 'L';
+    return 'XL';
+  });
   readonly selectedStrap = signal<BraceletStrapType>('leather-brown');
   readonly selectedContentSize = signal<BraceletContentSize>('large');
   readonly sizeOptions = SIZE_OPTIONS;
@@ -434,13 +550,24 @@ export class BraceletDetailComponent {
     const item = this.bracelet();
     return item?.images[this.activeImageIndex()] ?? item?.images[0] ?? {
       src: '/assets/images/hero/stone-hero.jpg',
-      alt: 'Georgian silver bracelet',
+      alt: 'bu-neba silver bracelet',
       role: 'hero' as const,
     };
   });
   readonly relatedBracelets = computed(() => {
     const item = this.bracelet();
     return item ? getRelatedBracelets(item) : [];
+  });
+
+  readonly whatsappLink = computed(() => {
+    const item = this.bracelet();
+    if (!item) return null;
+    return this.whatsappService.buildOrderLink(
+      item,
+      this.selectedWristCm(),
+      this.selectedStrap(),
+      this.selectedContentSize(),
+    );
   });
 
   constructor() {
@@ -469,9 +596,10 @@ export class BraceletDetailComponent {
 
       if (item) {
         this.metaService.updateMeta({
-          title: `${item.nameEn} - Georgian Silver Bracelet`,
+          title: `${item.nameEn} — bu-neba`,
           description: this.i18n.t(`bracelet.${item.slug}.shortDescription`),
           image: item.cardImage,
+          url: `/bracelets/${item.slug}`,
         });
       }
     });
@@ -484,6 +612,14 @@ export class BraceletDetailComponent {
   getSizeHint(): string {
     const option = this.sizeOptions.find((size) => size.value === this.selectedSize());
     return option ? option.cm : '';
+  }
+
+  sizeBandLabel(): string {
+    return this.selectedSize();
+  }
+
+  openSizeVideo(): void {
+    this.videoModal.open('/assets/size_check.mp4');
   }
 
   getStrapLabel(): string {

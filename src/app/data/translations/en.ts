@@ -11,9 +11,14 @@ export const en: TranslationMap = {
   'nav.symbols': 'Symbols',
   'nav.contact': 'Contact',
   'nav.cta': 'Contact Us',
-  'nav.home_aria': 'Neba home',
+  'nav.home_aria': 'bu-neba home',
   'nav.audio.enable': 'Enable ambient sound',
   'nav.audio.mute': 'Mute ambient sound',
+  'nav.theme.dark': 'Switch to dark mode',
+  'nav.theme.light': 'Switch to light mode',
+  'modal.close': 'Close',
+  'detail.size.video.cta': 'How to measure your size',
+  'guide.size.video.title': 'How to measure your wrist',
   'nav.toggle': 'Toggle navigation',
   'nav.main_aria': 'Main navigation',
   'footer.nav_aria': 'Footer navigation',
@@ -25,6 +30,7 @@ export const en: TranslationMap = {
 
   'cta.messenger': 'Message on Messenger',
   'cta.instagram': 'Message on Instagram',
+  'cta.whatsapp': 'Order via WhatsApp',
   'cta.view_collection': 'View Collection',
   'cta.view_details': 'View Details',
   'cta.see_craft': 'See the Craft Process',
@@ -34,9 +40,9 @@ export const en: TranslationMap = {
 
   'home.hero.heading': 'Georgian Handcrafted Objects That Carry Character',
   'home.hero.subheading':
-    'Neba creates objects where Georgian ornament, natural material, silver, and the inner will of a person come together in one form.',
+    'bu-neba creates objects where Georgian ornament, natural material, silver, and the inner will of a person come together in one form.',
   'home.hero.caption': 'Handcrafted Objects / Georgian Ornament / Natural Material / Individual Character',
-  'home.pillars.label': 'What Neba is built on',
+  'home.pillars.label': 'What bu-neba is built on',
   'home.pillars.tradition.title': 'Tradition',
   'home.pillars.tradition.text':
     'Georgian ornament is not mere decoration for us. It is a trace that brings the past alive in a present object.',
@@ -45,15 +51,15 @@ export const en: TranslationMap = {
     'We call what we do craft because each object is not just a made product — it has form, idea, character, and soul.',
   'home.pillars.love.title': 'Nature',
   'home.pillars.love.text':
-    'Wood, stone, earth, mountain, and silver are part of our visual language. Neba stands close to nature — in material and in spirit.',
+    'Wood, stone, earth, mountain, and silver are part of our visual language. bu-neba stands close to nature — in material and in spirit.',
   'home.featured.heading': 'Our Bracelets',
   'home.featured.subtitle':
-    'Our first collection brings together handcrafted silver, Georgian ornament, and the character of natural material. This is the beginning of Neba — the first form of the craft.',
+    'Our first collection brings together handcrafted silver, Georgian ornament, and the character of natural material. This is the beginning of bu-neba — the first form of the craft.',
   'home.featured.btn': 'View Full Collection',
   'home.craft.label': 'Craft',
   'home.craft.heading': 'Craft That Becomes an Object',
   'home.craft.text':
-    "Neba's objects are made slowly — through searching for the idea, respecting the material, thinking through the ornament, and the labour of the hand. Every line, shadow and touch builds the story of the final piece.",
+    "bu-neba's objects are made slowly — through searching for the idea, respecting the material, thinking through the ornament, and the labour of the hand. Every line, shadow and touch builds the story of the final piece.",
   'home.craft.btn': 'See the Craft Process',
   'home.order.heading': 'Ordering is Simple',
   'home.order.step1.title': 'Choose a Piece',
@@ -68,7 +74,7 @@ export const en: TranslationMap = {
 
   'collection.heading': 'Handcrafted Collection',
   'collection.subtitle':
-    'Objects made with Georgian ornament, natural materials, and individual character. Today the collection begins with silver bracelets — but the idea of Neba does not end with one material.',
+    'Objects made with Georgian ornament, natural materials, and individual character. Today the collection begins with silver bracelets — but the idea of bu-neba does not end with one material.',
   'collection.tab.bracelets': 'Bracelets',
   'collection.tab.rings': 'Rings',
   'collection.tab.pendants': 'Pendants',
@@ -137,7 +143,7 @@ export const en: TranslationMap = {
   'craft.hero.heading': 'A Craft That Comes from Tradition',
   'craft.hero.subtitle':
     'For us, making an object is not only a technical process. It is the coming together of idea, material, ornament, and human labour into one form.',
-  'craft.process.heading': 'How Neba Is Made',
+  'craft.process.heading': 'How bu-neba Is Made',
   'craft.step1.title': 'Idea',
   'craft.step1.text':
     'Everything begins with a feeling — what character the object should carry, what form it should hold, and what symbol it should touch.',
@@ -156,17 +162,17 @@ export const en: TranslationMap = {
   'craft.handmade.label': 'Why Handcrafted',
   'craft.handmade.heading': 'A Handcrafted Piece Never Exactly Repeats Another',
   'craft.handmade.text':
-    "In handcrafted work, small differences are not flaws. They are character. That is why each piece of Neba is unique — in it you can see the hand, the time, and the natural trace of the material.",
+    "In handcrafted work, small differences are not flaws. They are character. That is why each piece of bu-neba is unique — in it you can see the hand, the time, and the natural trace of the material.",
   'craft.gallery.heading': 'Craft Is Visible in the Details',
 
   'about.hero.label': 'About',
   'about.hero.heading': 'We Create Objects That Have Character',
   'about.hero.subtitle':
-    'Neba is a Georgian handcrafted objects brand that brings together tradition, nature, ornament, and craft. Today this idea lives in silver bracelets — tomorrow it may continue in other forms.',
+    'bu-neba is a Georgian handcrafted objects brand that brings together tradition, nature, ornament, and craft. Today this idea lives in silver bracelets — tomorrow it may continue in other forms.',
   'about.idea.heading': 'Why We Create',
   'about.idea.heading2': 'Georgian tradition can become an everyday object.',
   'about.idea.text':
-    'We believe Georgian tradition should not remain only in museums or in the past. It can be an object a person wears every day — touches, chooses, and takes as part of themselves. Neba is born from exactly this idea.',
+    'We believe Georgian tradition should not remain only in museums or in the past. It can be an object a person wears every day — touches, chooses, and takes as part of themselves. bu-neba is born from exactly this idea.',
   'about.values.purity.title': 'Purity',
   'about.values.purity.heading': 'Dignified form',
   'about.values.purity.text':
@@ -174,7 +180,7 @@ export const en: TranslationMap = {
   'about.values.nature.title': 'Nature',
   'about.values.nature.heading': 'Close to earth, wood, and mountain',
   'about.values.nature.text':
-    "Our aesthetic comes from natural materials — wood, stone, earth, mountain, and the cold light of silver. Nature is part of Neba's visual language.",
+    "Our aesthetic comes from natural materials — wood, stone, earth, mountain, and the cold light of silver. Nature is part of bu-neba's visual language.",
   'about.values.craft.title': 'Craft',
   'about.values.craft.heading': 'A work that has soul',
   'about.values.craft.text':
@@ -231,7 +237,7 @@ export const en: TranslationMap = {
     'The cross appears in our work with reverence — as a sign of purity, protection, inner strength, and the path.',
   'symbols.nature.title': "Nature's Trace",
   'symbols.nature.text':
-    "Tree, stone, mountain, and earth are part of Neba's visual language. That is why our objects stand close to the natural world and do not look artificial.",
+    "Tree, stone, mountain, and earth are part of bu-neba's visual language. That is why our objects stand close to the natural world and do not look artificial.",
 
   'contact.hero.label': 'Contact',
   'contact.hero.heading': 'Order & Contact',

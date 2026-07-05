@@ -33,7 +33,7 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
       <div class="hero__media">
         <img
           ngSrc="/assets/images/hero/stone-hero.jpg"
-          alt="Three handcrafted Georgian silver bracelets on a mossy mountain fortress stone at dawn, Caucasian mountain mist in the background"
+          alt="Three handcrafted bu-neba silver bracelets on a mossy mountain fortress stone at dawn, Caucasian mountain mist in the background"
           fill
           priority
           sizes="100vw"
@@ -42,7 +42,7 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
       <div class="hero-ornament-bg" aria-hidden="true" style="display:none"></div>
       <div class="hero__overlay"></div>
       <div class="hero__content">
-        <p class="label anim-fade-in-up">Georgian Silver</p>
+        <p class="label anim-fade-in-up">bu-neba</p>
         <h1 class="hero__title anim-fade-in-up anim-fade-in-up--delay-1">
           {{ i18n.t('home.hero.heading') }}
         </h1>
@@ -185,15 +185,15 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   readonly craftPhotos = [
     {
       src: '/assets/images/craft/1.png',
-      alt: 'Handcrafted Georgian silver bracelet resting on green leaves in natural sunlight',
+      alt: 'Handcrafted bu-neba silver bracelet resting on green leaves in natural sunlight',
     },
     {
       src: '/assets/images/craft/9.png',
-      alt: 'Handcrafted Georgian silver bracelet worn on a wrist, front view',
+      alt: 'Handcrafted bu-neba silver bracelet worn on a wrist, front view',
     },
     {
       src: '/assets/images/craft/10.png',
-      alt: 'Handcrafted Georgian silver bracelet worn on a wrist, back view',
+      alt: 'Handcrafted bu-neba silver bracelet worn on a wrist, back view',
     },
   ];
   readonly orderSteps = [
@@ -213,7 +213,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit(): void {
     this.metaService.updateMeta({
-      title: 'Georgian Handcrafted Silver Bracelets',
+      title: 'bu-neba — Georgian Handcrafted Silver Bracelets',
       description:
         'Premium handcrafted silver bracelets inspired by Georgian ornament, tradition and nature. Order via Messenger or Instagram.',
       image: '/assets/images/hero/stone-hero.jpg',

@@ -1,6 +1,12 @@
 import { Injectable, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 
+export const SITE_URL = 'https://bu-neba.ge';
+
+function toAbsoluteUrl(path: string): string {
+  return path.startsWith('http') ? path : `${SITE_URL}${path}`;
+}
+
 @Injectable({ providedIn: 'root' })
 export class MetaService {
   private readonly meta = inject(Meta);
@@ -23,11 +29,11 @@ export class MetaService {
     }
 
     if (options.image) {
-      this.meta.updateTag({ property: 'og:image', content: options.image });
+      this.meta.updateTag({ property: 'og:image', content: toAbsoluteUrl(options.image) });
     }
 
     if (options.url) {
-      this.meta.updateTag({ property: 'og:url', content: options.url });
+      this.meta.updateTag({ property: 'og:url', content: toAbsoluteUrl(options.url) });
     }
   }
 

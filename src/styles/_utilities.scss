@@ -19,7 +19,7 @@
 
 .section--surface {
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.018), transparent 28%),
+    linear-gradient(180deg, var(--color-surface-faint), transparent 28%),
     var(--color-bg-soft);
 }
 

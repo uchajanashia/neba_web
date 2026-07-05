@@ -117,7 +117,7 @@ import { I18nService } from '../../../core/services/i18n.service';
       }
 
       .lang-switcher__option:hover {
-        background: rgba(200, 195, 184, 0.06);
+        background: var(--color-surface-soft);
         color: var(--color-text-primary);
       }
 

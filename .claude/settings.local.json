@@ -24,7 +24,8 @@
       "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\Administrator\\\\Documents\\\\GitHub\\\\neba_web\\\\src\\\\app\\\\data\" -File -Recurse)",
       "Bash(Select-Object -ExpandProperty FullName)",
       "Bash(npx tsc *)",
-      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\Users\\\\Administrator\\\\Documents\\\\GitHub\\\\neba_web\\\\public\\\\assets\\\\images\\\\craft\\\\steps\")"
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\Users\\\\Administrator\\\\Documents\\\\GitHub\\\\neba_web\\\\public\\\\assets\\\\images\\\\craft\\\\steps\")",
+      "Bash(powershell -NoProfile -Command \"\\(Get-Content global.scss\\).Length\")"
     ]
   }
 }

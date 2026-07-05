@@ -64,7 +64,7 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
         <figure class="wide-photo" appScrollReveal [delay]="140">
           <img
             ngSrc="/assets/images/craft/7.png"
-            alt="Artisan inspecting the finished handcrafted Georgian silver bracelet in his hands"
+            alt="Artisan inspecting the finished handcrafted bu-neba silver bracelet in his hands"
             fill
             sizes="(max-width: 760px) 90vw, 44vw"
           />
@@ -103,9 +103,9 @@ export class CraftComponent implements OnInit {
 
   ngOnInit(): void {
     this.metaService.updateMeta({
-      title: 'The Craft - Georgian Silver Bracelets',
+      title: 'The Craft — bu-neba',
       description:
-        'Discover the handcrafting process behind every Georgian silver bracelet.',
+        'Discover the handcrafting process behind every bu-neba silver bracelet.',
     });
   }
 }

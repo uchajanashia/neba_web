@@ -13,10 +13,10 @@ import { I18nService } from '../../../core/services/i18n.service';
       <div class="ornament-line"></div>
       <div class="footer__inner">
         <div class="footer__brand">
-          <a routerLink="/" aria-label="ნება — მთავარი გვერდი">
+          <a routerLink="/" aria-label="ბუ-ნება — მთავარი გვერდი">
             <img
               ngSrc="/assets/logo/logo-full.png"
-              alt="ნება"
+              alt="ბუ-ნება"
               width="200"
               height="200"
               class="footer__logo"
@@ -42,7 +42,7 @@ import { I18nService } from '../../../core/services/i18n.service';
         </div>
       </div>
       <div class="footer__bottom">
-        <p>&copy; {{ year }} Georgian Silver. {{ i18n.t('footer.rights') }}</p>
+        <p>&copy; {{ year }} bu-neba. {{ i18n.t('footer.rights') }}</p>
       </div>
     </footer>
   `,

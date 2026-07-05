@@ -169,7 +169,7 @@ export class ContactComponent implements OnInit {
 
   ngOnInit(): void {
     this.metaService.updateMeta({
-      title: 'Order & Contact - Georgian Silver Bracelets',
+      title: 'Order & Contact — bu-neba',
       description: 'Order your handcrafted silver bracelet via Messenger or Instagram.',
     });
   }

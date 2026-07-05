@@ -14,6 +14,7 @@ import { CONTACT } from '../../../core/models/contact.constants';
 import { NAV_ITEMS } from '../../../core/models/navigation.model';
 import { AudioService } from '../../../core/services/audio.service';
 import { I18nService } from '../../../core/services/i18n.service';
+import { ThemeService } from '../../../core/services/theme.service';
 import { LangSwitcherComponent } from '../lang-switcher/lang-switcher.component';
 
 @Component({
@@ -22,10 +23,10 @@ import { LangSwitcherComponent } from '../lang-switcher/lang-switcher.component'
   template: `
     <header class="navbar" [class.navbar--scrolled]="isScrolled()" role="banner">
       <div class="navbar__inner">
-        <a routerLink="/" class="navbar__logo" aria-label="ნება — მთავარი გვერდი">
+        <a routerLink="/" class="navbar__logo" aria-label="ბუ-ნება — მთავარი გვერდი">
           <img
             ngSrc="/assets/logo/logo-icon.png"
-            alt="ნება"
+            alt="ბუ-ნება"
             width="1476"
             height="620"
             class="navbar__logo-img"
@@ -61,6 +62,33 @@ import { LangSwitcherComponent } from '../lang-switcher/lang-switcher.component'
             <svg aria-hidden="true" class="icon">
               <use [attr.href]="audioOn() ? '#icon-sound-on' : '#icon-sound-off'" />
             </svg>
+          </button>
+
+          <button
+            class="navbar__theme-btn"
+            type="button"
+            (click)="toggleTheme()"
+            [attr.aria-label]="theme() === 'dark' ? i18n.t('nav.theme.light') : i18n.t('nav.theme.dark')"
+            [attr.aria-pressed]="theme() === 'light'"
+          >
+            <span class="theme-icon theme-icon--sun" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3.6" fill="currentColor" stroke="none" />
+                <line x1="12" y1="2.2" x2="12" y2="4.6" />
+                <line x1="12" y1="19.4" x2="12" y2="21.8" />
+                <line x1="2.2" y1="12" x2="4.6" y2="12" />
+                <line x1="19.4" y1="12" x2="21.8" y2="12" />
+                <line x1="4.93" y1="4.93" x2="6.62" y2="6.62" />
+                <line x1="17.38" y1="17.38" x2="19.07" y2="19.07" />
+                <line x1="4.93" y1="19.07" x2="6.62" y2="17.38" />
+                <line x1="17.38" y1="6.62" x2="19.07" y2="4.93" />
+              </svg>
+            </span>
+            <span class="theme-icon theme-icon--moon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                <path d="M20.5 14.5A8.4 8.4 0 1 1 9.5 3.5a6.6 6.6 0 0 0 11 11z" />
+              </svg>
+            </span>
           </button>
 
           <app-lang-switcher />
@@ -122,6 +150,7 @@ import { LangSwitcherComponent } from '../lang-switcher/lang-switcher.component'
 export class NavbarComponent implements OnInit {
   private readonly platformId = inject(PLATFORM_ID);
   private readonly audioService = inject(AudioService);
+  private readonly themeService = inject(ThemeService);
   readonly i18n = inject(I18nService);
 
   readonly navItems = NAV_ITEMS;
@@ -129,6 +158,7 @@ export class NavbarComponent implements OnInit {
   readonly isScrolled = signal(false);
   readonly menuOpen = signal(false);
   readonly audioOn = this.audioService.isPlaying;
+  readonly theme = this.themeService.theme;
 
   @HostListener('window:scroll')
   onScroll(): void {
@@ -153,6 +183,10 @@ export class NavbarComponent implements OnInit {
 
   toggleAudio(): void {
     this.audioService.toggle();
+  }
+
+  toggleTheme(): void {
+    this.themeService.toggle();
   }
 
   navLabel(route: string): string {

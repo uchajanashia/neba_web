@@ -163,7 +163,7 @@ export class CollectionComponent implements OnInit {
 
   ngOnInit(): void {
     this.metaService.updateMeta({
-      title: 'Silver Bracelet Collection - Georgian Handcrafted',
+      title: 'Silver Bracelet Collection — bu-neba',
       description:
         'Browse handcrafted silver bracelets with Georgian ornamental designs and natural materials.',
     });
