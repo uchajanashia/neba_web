@@ -92,7 +92,7 @@ export const en: TranslationMap = {
   'card.btn.view': 'View Details',
   'card.btn.order': 'Order',
 
-  'product.details.sterling_silver': 'Sterling Silver',
+  'product.details.sterling_silver': 'Silver and Wood',
   'product.details.leather_or_rubber': 'Leather or Rubber',
   'product.details.sizing': 'Small / Medium / Large / Custom',
   'product.details.handcrafted': 'Handcrafted',
@@ -101,7 +101,7 @@ export const en: TranslationMap = {
   'product.details.order_channels': 'Messenger / Instagram',
 
   'detail.label': 'Handcrafted Piece',
-  'detail.features.silver': 'Handcrafted silver detail',
+  'detail.features.silver': 'Handcrafted silver and wood details',
   'detail.features.ornament': 'Form inspired by Georgian ornament',
   'detail.features.strap': 'Leather or rubber choice',
   'detail.features.size': 'Size fitting',

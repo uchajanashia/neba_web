@@ -92,7 +92,7 @@ export const ru: TranslationMap = {
   'card.btn.view': 'Подробнее',
   'card.btn.order': 'Заказать',
 
-  'product.details.sterling_silver': 'Стерлинговое серебро',
+  'product.details.sterling_silver': 'Серебро и дерево',
   'product.details.leather_or_rubber': 'Кожа или каучук',
   'product.details.sizing': 'Маленький / Средний / Большой / Индивидуальный',
   'product.details.handcrafted': 'Ручная работа',
@@ -101,7 +101,7 @@ export const ru: TranslationMap = {
   'product.details.order_channels': 'Messenger / Instagram',
 
   'detail.label': 'Изделие ручной работы',
-  'detail.features.silver': 'Серебряная деталь ручной работы',
+  'detail.features.silver': 'Детали из серебра и дерева ручной работы',
   'detail.features.ornament': 'Форма, вдохновлённая грузинским орнаментом',
   'detail.features.strap': 'Выбор кожи или каучука',
   'detail.features.size': 'Подбор размера',
