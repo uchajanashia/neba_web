@@ -125,6 +125,12 @@ import { I18nService } from '../../../core/services/i18n.service';
         color: var(--color-gold);
         font-weight: var(--weight-medium);
       }
+
+      @media (max-width: 440px) {
+        .lang-switcher__trigger {
+          padding: var(--space-1) var(--space-2);
+        }
+      }
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,

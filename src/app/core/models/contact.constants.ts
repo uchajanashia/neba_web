@@ -1,7 +1,7 @@
 export const CONTACT = {
-  messenger: 'https://m.me/YOUR_PAGE_ID',
-  instagram: 'https://instagram.com/YOUR_HANDLE',
-  instagram_handle: '@YOUR_HANDLE',
+  messenger: 'https://m.me/61591825437206',
+  instagram: 'https://www.instagram.com/bu_neba.ge/',
+  instagram_handle: '@bu_neba.ge',
   facebook_page: 'bu-neba',
   phone: '595212621',
   email: '',

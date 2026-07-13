@@ -1543,8 +1543,23 @@ textarea {
     text-overflow: ellipsis;
   }
 
-  .navbar__actions {
+  .navbar__inner {
     gap: var(--space-2);
+  }
+
+  .navbar__actions {
+    gap: var(--space-1);
+  }
+
+  .navbar__audio-btn,
+  .navbar__theme-btn,
+  .navbar__hamburger {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+
+  .navbar__logo-img {
+    height: 42px;
   }
 
   .btn {
