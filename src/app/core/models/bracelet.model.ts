@@ -1,11 +1,7 @@
-export type BraceletMaterial = 'leather' | 'rubber' | 'both';
-export type BraceletSize = 'small' | 'medium' | 'large' | 'custom';
-export type BraceletSizeOption = 'S' | 'M' | 'L' | 'XL';
 export type BraceletStrapType = 'leather-brown' | 'leather-black' | 'rubber';
 export type BraceletContentSize = 'large' | 'small';
 
 export interface BraceletVariantKey {
-  size: BraceletSizeOption;
   strap: BraceletStrapType;
   contentSize: BraceletContentSize;
 }
@@ -41,8 +37,6 @@ export interface Bracelet {
   /** JPEG version for social link previews — some crawlers don't render WebP og:image */
   ogImage?: string;
   nameEn: string;
-  materials: BraceletMaterial;
-  sizes: BraceletSize[];
   images: BraceletImage[];
   variantImages?: BraceletVariantImage[];
   details: BraceletDetail;

@@ -1,11 +1,33 @@
 <!doctype html>
-<html lang="ka">
+<html lang="ka" class="app-loading">
 <head>
   <meta charset="utf-8">
   <title>ბუ-ნება — ქართული ხელნაკეთი ვერცხლი</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#11100E">
+  <link rel="preload" href="/assets/logo/owl.svg" as="image" type="image/svg+xml">
+  <style>
+    html.app-loading,
+    html.app-loading body {
+      overflow: hidden;
+      overscroll-behavior: none;
+      background: #0f100f;
+    }
+
+    html.app-loading app-root {
+      visibility: hidden;
+    }
+
+    #app-shell-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: grid;
+      place-items: center;
+      background: #0f100f;
+    }
+  </style>
   <meta
     name="description"
     content="ბუ-ნება — ხელნაკეთი ვერცხლის სამაჯურები ქართული ორნამენტებით. ტრადიცია, ხელოვნება და სიყვარული."
@@ -21,13 +43,15 @@
     property="og:description"
     content="ხელნაკეთი ვერცხლის სამაჯურები ქართული ორნამენტებით. ტრადიცია, ხელოვნება და სიყვარული."
   >
-  <meta property="og:url" content="https://bu-neba.ge/">
-  <meta property="og:image" content="https://bu-neba.ge/assets/logo/og-image.jpg">
+  <link rel="canonical" href="https://www.bu-neba.ge/">
+  <meta property="og:url" content="https://www.bu-neba.ge/">
+  <meta property="og:image" content="https://www.bu-neba.ge/assets/logo/og-image.jpg">
   <meta property="og:image:width" content="1520">
   <meta property="og:image:height" content="850">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="ბუ-ნება — ქართული ხელნაკეთი ვერცხლი">
-  <meta name="twitter:image" content="https://bu-neba.ge/assets/logo/og-image.jpg">
+  <meta name="twitter:description" content="ხელნაკეთი ვერცხლის სამაჯურები ქართული ორნამენტებით. ტრადიცია, ხელოვნება და სიყვარული.">
+  <meta name="twitter:image" content="https://www.bu-neba.ge/assets/logo/og-image.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -41,12 +65,52 @@
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "ბუ-ნება",
-      "url": "https://bu-neba.ge",
-      "logo": "https://bu-neba.ge/assets/logo/logo-full.png"
+      "url": "https://www.bu-neba.ge",
+      "logo": "https://www.bu-neba.ge/assets/logo/logo-full.webp"
     }
   </script>
 </head>
 <body>
-  <app-root></app-root>
+  <div
+    id="app-shell-loader"
+    class="page-loader"
+    role="status"
+    aria-live="polite"
+    aria-label="იტვირთება"
+  >
+    <div class="page-loader__stage">
+      <img
+        class="page-loader__owl"
+        src="/assets/logo/owl.svg"
+        alt=""
+        aria-hidden="true"
+        draggable="false"
+      >
+      <svg class="page-loader__logo" width="300" height="170" viewBox="0 0 300 170" aria-hidden="true">
+        <text x="150" y="120" text-anchor="middle" class="page-loader__text-line">ნება</text>
+      </svg>
+      <svg
+        class="page-loader__branch"
+        viewBox="0 0 400 50"
+        preserveAspectRatio="none"
+        overflow="visible"
+        aria-hidden="true"
+      >
+        <path class="page-loader__branch-line" pathLength="1" d="M 0 32 C 50 22 110 38 170 30 C 220 24 280 38 340 28 C 360 25 380 34 400 30"></path>
+        <path class="page-loader__branch-line page-loader__branch-line--twig" pathLength="1" d="M 70 30 C 74 22 78 16 80 12"></path>
+        <path class="page-loader__branch-line page-loader__branch-line--twig" pathLength="1" d="M 150 28 C 156 20 160 14 162 10"></path>
+        <path class="page-loader__branch-line page-loader__branch-line--twig" pathLength="1" d="M 230 30 C 236 22 240 16 242 12"></path>
+        <path class="page-loader__branch-line page-loader__branch-line--twig" pathLength="1" d="M 310 28 C 316 20 320 14 322 10"></path>
+        <path class="page-loader__branch-line page-loader__branch-line--twig" pathLength="1" d="M 370 30 C 374 22 378 16 380 12"></path>
+        <path class="page-loader__branch-line page-loader__branch-line--leaf" pathLength="1" d="M 80 12 C 73 10 70 4 76 2 C 82 0 86 8 80 12 Z"></path>
+        <path class="page-loader__branch-line page-loader__branch-line--leaf" pathLength="1" d="M 162 10 C 156 7 156 0 162 0 C 168 0 170 8 162 10 Z"></path>
+        <path class="page-loader__branch-line page-loader__branch-line--leaf" pathLength="1" d="M 242 12 C 248 10 252 2 246 0 C 240 -2 236 6 242 12 Z"></path>
+        <path class="page-loader__branch-line page-loader__branch-line--leaf" pathLength="1" d="M 322 10 C 316 7 316 0 322 0 C 328 0 330 8 322 10 Z"></path>
+        <path class="page-loader__branch-line page-loader__branch-line--leaf" pathLength="1" d="M 380 12 C 374 10 372 2 378 0 C 384 -2 388 8 380 12 Z"></path>
+      </svg>
+    </div>
+    <span class="sr-only">იტვირთება</span>
+  </div>
+  <app-root inert aria-busy="true"></app-root>
 </body>
 </html>

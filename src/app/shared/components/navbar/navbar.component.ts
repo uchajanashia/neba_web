@@ -25,10 +25,10 @@ import { LangSwitcherComponent } from '../lang-switcher/lang-switcher.component'
       <div class="navbar__inner">
         <a routerLink="/" class="navbar__logo" aria-label="ბუ-ნება — მთავარი გვერდი">
           <img
-            ngSrc="/assets/logo/logo-icon.png"
+            ngSrc="/assets/logo/logo-icon.webp"
             alt="ბუ-ნება"
-            width="1476"
-            height="620"
+            width="667"
+            height="280"
             class="navbar__logo-img"
             priority
           />
@@ -91,7 +91,9 @@ import { LangSwitcherComponent } from '../lang-switcher/lang-switcher.component'
             </span>
           </button>
 
-          <app-lang-switcher />
+          <div class="navbar__lang-desktop">
+            <app-lang-switcher />
+          </div>
 
           <a
             [href]="messengerUrl"
@@ -118,12 +120,20 @@ import { LangSwitcherComponent } from '../lang-switcher/lang-switcher.component'
       </div>
 
       @if (menuOpen()) {
-        <nav id="mobile-menu" class="navbar__mobile" [@mobileMenuAnimation]>
+        <nav
+          id="mobile-menu"
+          class="navbar__mobile"
+          [attr.aria-label]="i18n.t('nav.main_aria')"
+          [@mobileMenuAnimation]
+        >
           @for (item of navItems; track item.route) {
             <a [routerLink]="item.route" class="navbar__mobile-link" (click)="closeMenu()">
               {{ navLabel(item.route) }}
             </a>
           }
+          <div class="navbar__mobile-lang">
+            <app-lang-switcher />
+          </div>
         </nav>
       }
     </header>
@@ -165,6 +175,11 @@ export class NavbarComponent implements OnInit {
     if (isPlatformBrowser(this.platformId)) {
       this.isScrolled.set(window.scrollY > 40);
     }
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscape(): void {
+    this.closeMenu();
   }
 
   ngOnInit(): void {

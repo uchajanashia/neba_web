@@ -10,10 +10,9 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
 import { getBraceletBySlug, getRelatedBracelets } from '../../data/bracelets.data';
-import { CONTENT_SIZE_OPTIONS, SIZE_OPTIONS, STRAP_OPTIONS } from '../../data/size-options.data';
+import { CONTENT_SIZE_OPTIONS, STRAP_OPTIONS } from '../../data/size-options.data';
 import type {
   BraceletContentSize,
-  BraceletSizeOption,
   BraceletStrapType,
 } from '../../core/models/bracelet.model';
 import { I18nService } from '../../core/services/i18n.service';
@@ -24,6 +23,7 @@ import { BraceletCardComponent } from '../../shared/components/bracelet-card/bra
 import { CtaButtonsComponent } from '../../shared/components/cta-buttons/cta-buttons.component';
 import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.directive';
 import { WristSizeSliderComponent } from '../../shared/components/wrist-size-slider/wrist-size-slider.component';
+import { imageSrcset, thumbnailSrc } from '../../shared/utils/image-srcset';
 
 @Component({
   selector: 'app-bracelet-detail',
@@ -42,6 +42,8 @@ import { WristSizeSliderComponent } from '../../shared/components/wrist-size-sli
             <div class="gallery__main">
               <img
                 [src]="activeVariantImage()?.src ?? activeImage().src"
+                [attr.srcset]="imageSrcset(activeVariantImage()?.src ?? activeImage().src, 1200)"
+                sizes="(max-width: 760px) 100vw, 50vw"
                 [alt]="activeVariantImage()?.alt ?? activeImage().alt"
                 loading="eager"
                 fetchpriority="high"
@@ -49,15 +51,21 @@ import { WristSizeSliderComponent } from '../../shared/components/wrist-size-sli
                 class="gallery__main-image"
               />
             </div>
-            <div class="gallery__thumbs" [attr.aria-label]="i18n.t('detail.gallery_thumbs_aria')">
+            <div
+              class="gallery__thumbs"
+              role="group"
+              [attr.aria-label]="i18n.t('detail.gallery_thumbs_aria')"
+            >
               @for (image of item.images; track image.src; let i = $index) {
                 <button
                   type="button"
                   class="gallery__thumb"
                   [class.gallery__thumb--active]="activeImageIndex() === i"
+                  [attr.aria-pressed]="activeImageIndex() === i"
+                  [attr.aria-label]="image.alt"
                   (click)="selectImage(i)"
                 >
-                  <img [src]="image.src" [alt]="image.alt" loading="lazy" decoding="async" />
+                  <img [src]="thumbnailSrc(image.src)" alt="" loading="lazy" decoding="async" />
                 </button>
               }
             </div>
@@ -344,10 +352,6 @@ import { WristSizeSliderComponent } from '../../shared/components/wrist-size-sli
         color: var(--color-text-primary);
       }
 
-      .variant-btn--size {
-        min-width: 72px;
-      }
-
       .variant-btn--strap {
         min-width: 120px;
         flex-direction: row;
@@ -486,7 +490,32 @@ import { WristSizeSliderComponent } from '../../shared/components/wrist-size-sli
       }
 
       @media (max-width: 760px) {
+        .variant-group__options {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .variant-btn--strap,
+        .variant-btn--content {
+          width: 100%;
+          min-width: 0;
+          min-height: 44px;
+        }
+
+        .variant-btn--content {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.2rem;
+        }
+
+        .variant-btn__main,
+        .variant-btn__sub {
+          white-space: normal;
+          overflow-wrap: anywhere;
+        }
+
         .size-help-btn {
+          min-height: 44px;
           padding: 0.4rem 0.7rem;
         }
       }
@@ -501,19 +530,13 @@ export class BraceletDetailComponent {
   private readonly videoModal = inject(VideoModalService);
   private readonly whatsappService = inject(WhatsAppService);
   readonly i18n = inject(I18nService);
+  readonly imageSrcset = imageSrcset;
+  readonly thumbnailSrc = thumbnailSrc;
 
   readonly activeImageIndex = signal(0);
   readonly selectedWristCm = signal<number>(17);
-  readonly selectedSize = computed<BraceletSizeOption>(() => {
-    const cm = this.selectedWristCm();
-    if (cm <= 16.5) return 'S';
-    if (cm <= 18.5) return 'M';
-    if (cm <= 20.5) return 'L';
-    return 'XL';
-  });
   readonly selectedStrap = signal<BraceletStrapType>('leather-brown');
   readonly selectedContentSize = signal<BraceletContentSize>('large');
-  readonly sizeOptions = SIZE_OPTIONS;
   readonly strapOptions = STRAP_OPTIONS;
   readonly contentSizeOptions = computed(() => {
     const available = this.bracelet()?.contentSizes;
@@ -534,21 +557,12 @@ export class BraceletDetailComponent {
 
     const variant = item.variantImages?.find(
       (variantImage) =>
-        variantImage.key.size === this.selectedSize() &&
         variantImage.key.strap === this.selectedStrap() &&
         variantImage.key.contentSize === this.selectedContentSize(),
     );
 
     if (variant) {
       return variant;
-    }
-
-    const strapMatch = item.variantImages?.find(
-      (variantImage) => variantImage.key.strap === this.selectedStrap(),
-    );
-
-    if (strapMatch) {
-      return strapMatch;
     }
 
     return item.images[0] ?? null;
@@ -581,7 +595,6 @@ export class BraceletDetailComponent {
     let initializedVariant = false;
 
     effect(() => {
-      this.selectedSize();
       this.selectedStrap();
       this.selectedContentSize();
 
@@ -597,7 +610,7 @@ export class BraceletDetailComponent {
       const item = this.bracelet();
 
       if (!item && this.slug()) {
-        void this.router.navigateByUrl('/bracelets');
+        void this.router.navigateByUrl('/404');
         return;
       }
 
@@ -614,15 +627,6 @@ export class BraceletDetailComponent {
 
   selectImage(index: number): void {
     this.activeImageIndex.set(index);
-  }
-
-  getSizeHint(): string {
-    const option = this.sizeOptions.find((size) => size.value === this.selectedSize());
-    return option ? option.cm : '';
-  }
-
-  sizeBandLabel(): string {
-    return this.selectedSize();
   }
 
   openSizeVideo(): void {
@@ -665,11 +669,11 @@ export class BraceletDetailComponent {
     const keyByValue: Record<string, string> = {
       'Sterling Silver': 'product.details.sterling_silver',
       'Leather or Rubber': 'product.details.leather_or_rubber',
-      'Small / Medium / Large / Custom': 'product.details.sizing',
+      'Made to wrist measurement': 'product.details.sizing',
       Handcrafted: 'product.details.handcrafted',
       'Georgian Ornamental': 'product.details.georgian_ornamental',
       'Georgian Mountain-inspired': 'product.details.georgian_mountain',
-      'Messenger / Instagram': 'product.details.order_channels',
+      'Messenger / Instagram / WhatsApp': 'product.details.order_channels',
     };
 
     return this.i18n.t(keyByValue[value] ?? value);

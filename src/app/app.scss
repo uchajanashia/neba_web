@@ -1,3 +1,21 @@
 main {
   min-height: 100dvh;
+  outline: none;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: calc(var(--z-loader) + 1);
+  inset-block-start: var(--space-3);
+  inset-inline-start: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  background: var(--color-gold);
+  color: var(--color-btn-primary-text);
+  transform: translateY(-160%);
+  transition: transform 160ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
 }

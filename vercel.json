@@ -1,9 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "angular",
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
-  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -22,7 +19,7 @@
       ]
     },
     {
-      "source": "/(favicon.*|apple-touch-icon.png|android-chrome-.*|site.webmanifest|background_music.mp3)",
+      "source": "/(favicon.*|apple-touch-icon.png|android-chrome-.*|site.webmanifest|new_sound.mp3)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=2592000, stale-while-revalidate=86400" }
       ]

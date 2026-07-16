@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, computed, inject, signal } from '@angular/core';
 import { LANGUAGES, type LangCode } from '../../../core/models/language.model';
 import { I18nService } from '../../../core/services/i18n.service';
 
@@ -12,7 +12,6 @@ import { I18nService } from '../../../core/services/i18n.service';
         type="button"
         (click)="toggle()"
         [attr.aria-expanded]="open()"
-        aria-haspopup="listbox"
         [attr.aria-label]="i18n.t('language.select')"
       >
         <span class="lang-switcher__current">{{ currentLabel() }}</span>
@@ -28,24 +27,25 @@ import { I18nService } from '../../../core/services/i18n.service';
       </button>
 
       @if (open()) {
-        <ul
+        <div
           class="lang-switcher__dropdown"
-          role="listbox"
+          role="group"
           [attr.aria-label]="i18n.t('language.select')"
           (mouseleave)="open.set(false)"
         >
           @for (lang of languages; track lang.code) {
-            <li
+            <button
+              type="button"
               class="lang-switcher__option"
               [class.lang-switcher__option--active]="i18n.lang() === lang.code"
-              role="option"
-              [attr.aria-selected]="i18n.lang() === lang.code"
+              [attr.aria-pressed]="i18n.lang() === lang.code"
+              [attr.lang]="lang.code"
               (click)="select(lang.code)"
             >
               {{ lang.label }}
-            </li>
+            </button>
           }
-        </ul>
+        </div>
       }
     </div>
   `,
@@ -101,15 +101,19 @@ import { I18nService } from '../../../core/services/i18n.service';
         border-radius: var(--radius-md);
         background: var(--color-bg-elevated);
         box-shadow: var(--shadow-lg);
-        list-style: none;
         animation: fadeInDown 0.2s ease-out both;
       }
 
       .lang-switcher__option {
+        display: block;
+        width: 100%;
         padding: var(--space-2) var(--space-4);
+        border: 0;
+        background: transparent;
         color: var(--color-text-muted);
         font-family: var(--font-body);
         font-size: var(--text-sm);
+        text-align: left;
         cursor: pointer;
         transition:
           background 0.2s ease,
@@ -150,5 +154,10 @@ export class LangSwitcherComponent {
 
   toggle(): void {
     this.open.update((value) => !value);
+  }
+
+  @HostListener('document:keydown.escape')
+  close(): void {
+    this.open.set(false);
   }
 }

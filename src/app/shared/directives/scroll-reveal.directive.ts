@@ -26,9 +26,14 @@ export class ScrollRevealDirective implements OnInit, OnDestroy {
     }
 
     const element = this.el.nativeElement;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
     element.style.opacity = '0';
     element.style.transform = `translateY(${this.distance()}px)`;
-    element.style.transition = `opacity 850ms ease ${this.delay()}ms, transform 850ms ease ${this.delay()}ms`;
+    element.style.transition = `opacity 650ms ease ${this.delay()}ms, transform 650ms ease ${this.delay()}ms`;
 
     this.observer = new IntersectionObserver(
       (entries) => {

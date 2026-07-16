@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, computed, signal, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, signal, inject } from '@angular/core';
 import { BRACELETS } from '../../data/bracelets.data';
 import { COLLECTIONS } from '../../data/collections.data';
 import { BraceletCardComponent } from '../../shared/components/bracelet-card/bracelet-card.component';
@@ -6,13 +6,6 @@ import { CtaButtonsComponent } from '../../shared/components/cta-buttons/cta-but
 import { I18nService } from '../../core/services/i18n.service';
 import { MetaService } from '../../core/services/meta.service';
 import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.directive';
-
-type FilterKey = 'all' | 'silver' | 'leather' | 'rubber' | 'large' | 'small';
-
-interface FilterOption {
-  key: FilterKey;
-  labelKey: string;
-}
 
 @Component({
   selector: 'app-collection',
@@ -29,7 +22,12 @@ interface FilterOption {
 
     <section class="section">
       <div class="container">
-        <div class="collection-tabs" role="tablist" aria-label="Product collections" appScrollReveal>
+        <div
+          class="collection-tabs"
+          role="group"
+          [attr.aria-label]="i18n.t('nav.collection')"
+          appScrollReveal
+        >
           @for (col of collections; track col.id) {
             <button
               type="button"
@@ -38,8 +36,7 @@ interface FilterOption {
               [class.collection-tab--unavailable]="!col.available"
               [disabled]="!col.available"
               (click)="col.available && setCollection(col.id)"
-              role="tab"
-              [attr.aria-selected]="activeCollection() === col.id"
+              [attr.aria-pressed]="col.available ? activeCollection() === col.id : null"
             >
               {{ collectionLabel(col.id) }}
               @if (!col.available) {
@@ -52,7 +49,7 @@ interface FilterOption {
 
 
         <div class="bracelet-grid collection-grid">
-          @for (bracelet of filteredBracelets(); track bracelet.id; let i = $index) {
+          @for (bracelet of bracelets; track bracelet.id; let i = $index) {
             <app-bracelet-card [bracelet]="bracelet" appScrollReveal [delay]="i * 120" />
           }
         </div>
@@ -132,34 +129,9 @@ export class CollectionComponent implements OnInit {
   private readonly metaService = inject(MetaService);
   readonly i18n = inject(I18nService);
 
-  readonly filters: FilterOption[] = [
-    { key: 'all', labelKey: 'collection.filter.all' },
-    { key: 'silver', labelKey: 'collection.filter.silver' },
-    { key: 'leather', labelKey: 'collection.filter.leather' },
-    { key: 'rubber', labelKey: 'collection.filter.rubber' },
-    { key: 'large', labelKey: 'collection.filter.large' },
-    { key: 'small', labelKey: 'collection.filter.small' },
-  ];
+  readonly bracelets = BRACELETS;
   readonly collections = COLLECTIONS;
   readonly activeCollection = signal<string>('bracelets');
-  readonly activeFilter = signal<FilterKey>('all');
-  readonly filteredBracelets = computed(() => {
-    const filter = this.activeFilter();
-
-    if (filter === 'all' || filter === 'silver') {
-      return BRACELETS;
-    }
-
-    if (filter === 'leather') {
-      return BRACELETS.filter((bracelet) => bracelet.materials !== 'rubber');
-    }
-
-    if (filter === 'rubber') {
-      return BRACELETS.filter((bracelet) => bracelet.materials !== 'leather');
-    }
-
-    return BRACELETS.filter((bracelet) => bracelet.sizes.includes(filter));
-  });
 
   ngOnInit(): void {
     this.metaService.updateMeta({
@@ -167,10 +139,6 @@ export class CollectionComponent implements OnInit {
       description:
         'Browse handcrafted silver bracelets with Georgian ornamental designs and natural materials.',
     });
-  }
-
-  setFilter(filter: FilterKey): void {
-    this.activeFilter.set(filter);
   }
 
   setCollection(id: string): void {

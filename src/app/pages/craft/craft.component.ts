@@ -5,6 +5,7 @@ import { I18nService } from '../../core/services/i18n.service';
 import { MetaService } from '../../core/services/meta.service';
 import { SectionTitleComponent } from '../../shared/components/section-title/section-title.component';
 import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.directive';
+import { imageSrcset } from '../../shared/utils/image-srcset';
 
 @Component({
   selector: 'app-craft',
@@ -14,6 +15,7 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
       <div class="page-hero__image">
         <img
           ngSrc="/assets/images/craft/2.webp"
+          [attr.srcset]="imageSrcset('/assets/images/craft/2.webp', 1086)"
           alt="Silver craft tools arranged on the workbench, ready for the start of the process"
           fill
           priority
@@ -36,6 +38,7 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
               <img
                 class="timeline__bg"
                 [ngSrc]="'/assets/images/craft/steps/step-' + step.number + '.webp'"
+                [attr.srcset]="imageSrcset('/assets/images/craft/steps/step-' + step.number + '.webp', 1200)"
                 [alt]="i18n.t('craft.step' + step.number + '.title')"
                 fill
                 sizes="100vw"
@@ -64,6 +67,7 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
         <figure class="wide-photo" appScrollReveal [delay]="140">
           <img
             ngSrc="/assets/images/craft/7.webp"
+            [attr.srcset]="imageSrcset('/assets/images/craft/7.webp', 1086)"
             alt="Artisan inspecting the finished handcrafted bu-neba silver bracelet in his hands"
             fill
             sizes="(max-width: 760px) 90vw, 44vw"
@@ -78,7 +82,13 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
         <div class="masonry">
           @for (photo of gallery; track photo.src; let i = $index) {
             <figure appScrollReveal [delay]="i * 90">
-              <img [ngSrc]="photo.src" [alt]="photo.alt" fill sizes="(max-width: 760px) 90vw, 30vw" />
+              <img
+                [ngSrc]="photo.src"
+                [attr.srcset]="imageSrcset(photo.src, 1086)"
+                [alt]="photo.alt"
+                fill
+                sizes="(max-width: 760px) 90vw, 30vw"
+              />
             </figure>
           }
         </div>
@@ -90,6 +100,7 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
 export class CraftComponent implements OnInit {
   private readonly metaService = inject(MetaService);
   readonly i18n = inject(I18nService);
+  readonly imageSrcset = imageSrcset;
 
   readonly steps = CRAFT_STEPS;
   readonly gallery = [

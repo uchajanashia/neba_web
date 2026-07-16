@@ -42,6 +42,15 @@
             "outputMode": "server",
             "ssr": {
               "entry": "src/server.ts"
+            },
+            "security": {
+              "allowedHosts": [
+                "bu-neba.ge",
+                "*.bu-neba.ge",
+                "*.vercel.app",
+                "localhost",
+                "127.0.0.1"
+              ]
             }
           },
           "configurations": {
@@ -54,7 +63,7 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
+                  "maximumWarning": "5kB",
                   "maximumError": "8kB"
                 }
               ],

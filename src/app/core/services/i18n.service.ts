@@ -23,14 +23,14 @@ export class I18nService {
     this.currentLang.set(code);
 
     if (isPlatformBrowser(this.platformId)) {
-      localStorage.setItem(STORAGE_KEY, code);
+      this.writeStoredLang(code);
       document.documentElement.lang = code;
     }
   }
 
   private getInitialLang(): LangCode {
     if (isPlatformBrowser(this.platformId)) {
-      const stored = localStorage.getItem(STORAGE_KEY);
+      const stored = this.readStoredLang();
 
       if (stored === 'ka' || stored === 'en' || stored === 'ru') {
         return stored;
@@ -38,5 +38,25 @@ export class I18nService {
     }
 
     return DEFAULT_LANG;
+  }
+
+  private readStoredLang(): string | null {
+    try {
+      return typeof window.localStorage?.getItem === 'function'
+        ? window.localStorage.getItem(STORAGE_KEY)
+        : null;
+    } catch {
+      return null;
+    }
+  }
+
+  private writeStoredLang(code: LangCode): void {
+    try {
+      if (typeof window.localStorage?.setItem === 'function') {
+        window.localStorage.setItem(STORAGE_KEY, code);
+      }
+    } catch {
+      // Language selection still works when storage is unavailable.
+    }
   }
 }

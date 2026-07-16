@@ -1,36 +1,33 @@
-import { isPlatformBrowser } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Injectable, PLATFORM_ID, inject, signal } from '@angular/core';
 
-const FALLBACK_EVENTS = [
-  'pointerdown',
-  'pointermove',
-  'keydown',
-  'touchstart',
-  'scroll',
-  'wheel',
-] as const;
+const FALLBACK_EVENTS = ['pointerdown', 'keydown', 'touchstart'] as const;
 
 @Injectable({ providedIn: 'root' })
 export class AudioService {
   private readonly platformId = inject(PLATFORM_ID);
+  private readonly doc = inject(DOCUMENT);
   private audio?: HTMLAudioElement;
   private autoplayAttempted = false;
+  private userToggled = false;
   private detachFallback?: () => void;
 
   readonly isPlaying = signal(false);
 
   private ensureAudio(): HTMLAudioElement {
     if (!this.audio) {
-      this.audio = new Audio('/background_music.mp3');
+      this.audio = new Audio('/new_sound.mp3');
       this.audio.loop = true;
-      this.audio.volume = 0.005;
       this.audio.preload = 'auto';
+      this.audio.addEventListener('play', () => this.isPlaying.set(true));
+      this.audio.addEventListener('pause', () => this.isPlaying.set(false));
+      this.audio.addEventListener('error', () => this.isPlaying.set(false));
     }
     return this.audio;
   }
 
   tryAutoplay(): void {
-    if (!isPlatformBrowser(this.platformId) || this.autoplayAttempted) {
+    if (!isPlatformBrowser(this.platformId) || this.autoplayAttempted || this.userToggled) {
       return;
     }
     this.autoplayAttempted = true;
@@ -57,13 +54,13 @@ export class AudioService {
     };
     const cleanup = () => {
       for (const event of FALLBACK_EVENTS) {
-        document.removeEventListener(event, handler);
+        this.doc.removeEventListener(event, handler);
       }
       this.detachFallback = undefined;
     };
     this.detachFallback = cleanup;
     for (const event of FALLBACK_EVENTS) {
-      document.addEventListener(event, handler, { once: true, passive: true });
+      this.doc.addEventListener(event, handler, { passive: true });
     }
   }
 
@@ -72,6 +69,7 @@ export class AudioService {
       return;
     }
     const audio = this.ensureAudio();
+    this.userToggled = true;
 
     if (this.isPlaying()) {
       audio.pause();

@@ -1,58 +1,59 @@
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   OnInit,
-  PLATFORM_ID,
   inject,
 } from '@angular/core';
-import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { filter } from 'rxjs';
-import { AudioService } from './core/services/audio.service';
+import { NavigationEnd, NavigationStart, Router, RouterOutlet } from '@angular/router';
 import { I18nService } from './core/services/i18n.service';
 import { MetaService } from './core/services/meta.service';
 import { ThemeService } from './core/services/theme.service';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
-import { PageLoaderComponent } from './shared/components/page-loader/page-loader.component';
 import { VideoModalComponent } from './shared/components/video-modal/video-modal.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavbarComponent, FooterComponent, PageLoaderComponent, VideoModalComponent],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent, VideoModalComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class App implements OnInit, AfterViewInit {
+export class App implements OnInit {
   private readonly doc = inject(DOCUMENT);
   private readonly router = inject(Router);
-  private readonly i18n = inject(I18nService);
+  readonly i18n = inject(I18nService);
   private readonly metaService = inject(MetaService);
-  private readonly audioService = inject(AudioService);
   private readonly themeService = inject(ThemeService);
-  private readonly platformId = inject(PLATFORM_ID);
 
   ngOnInit(): void {
     this.doc.documentElement.lang = this.i18n.lang();
     this.themeService.init();
 
-    this.router.events
-      .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
-      .subscribe(() => {
-        const route = this.router.routerState.snapshot.root.firstChild;
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        this.metaService.resetPageImage();
+      }
+
+      if (event instanceof NavigationEnd) {
+        let route = this.router.routerState.snapshot.root;
+
+        while (route.firstChild) {
+          route = route.firstChild;
+        }
+
         const description = route?.data?.['description'];
 
-        if (typeof description === 'string') {
-          this.metaService.updateDescription(description);
-        }
-      });
-  }
+        this.metaService.updateMeta({
+          title: this.doc.title,
+          description: typeof description === 'string' ? description : undefined,
+          url: event.urlAfterRedirects,
+        });
 
-  ngAfterViewInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      window.setTimeout(() => this.audioService.tryAutoplay(), 4000);
-    }
+        const main = this.doc.getElementById('main-content');
+        main?.focus({ preventScroll: true });
+      }
+    });
   }
 }

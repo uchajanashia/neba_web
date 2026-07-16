@@ -8,20 +8,20 @@
       stroke-linejoin: round;
       stroke-dasharray: 1 1;
       stroke-dashoffset: 1;
-      animation: owlDraw 1.9s ease-out 0.15s forwards, owlBreath 3.2s ease-in-out 2.4s infinite;
+      animation: owlDraw 1.25s ease-out 0.1s forwards, owlBreath 3.2s ease-in-out 1.9s infinite;
     }
-    .owl-stroke:nth-of-type(2n)  { animation-delay: 0.22s, 2.4s; }
-    .owl-stroke:nth-of-type(3n)  { animation-delay: 0.32s, 2.4s; }
-    .owl-stroke:nth-of-type(5n)  { animation-delay: 0.42s, 2.4s; }
-    .owl-stroke:nth-of-type(7n)  { animation-delay: 0.52s, 2.4s; }
-    .owl-stroke:nth-of-type(11n) { animation-delay: 0.62s, 2.4s; }
+    .owl-stroke:nth-of-type(2n)  { animation-delay: 0.14s, 1.9s; }
+    .owl-stroke:nth-of-type(3n)  { animation-delay: 0.2s, 1.9s; }
+    .owl-stroke:nth-of-type(5n)  { animation-delay: 0.26s, 1.9s; }
+    .owl-stroke:nth-of-type(7n)  { animation-delay: 0.33s, 1.9s; }
+    .owl-stroke:nth-of-type(11n) { animation-delay: 0.4s, 1.9s; }
     .owl-fill {
       fill: #b79250;
       stroke: none;
       opacity: 0;
       transform-origin: center;
       transform-box: fill-box;
-      animation: owlFillIn 0.45s cubic-bezier(0.34,1.56,0.64,1) 2.1s forwards;
+      animation: owlFillIn 0.3s cubic-bezier(0.34,1.56,0.64,1) 1.45s forwards;
     }
     @keyframes owlDraw { to { stroke-dashoffset: 0; } }
     @keyframes owlBreath {
@@ -32,6 +32,14 @@
       0%   { opacity: 0; transform: scale(0.2); }
       60%  { opacity: 1; transform: scale(1.15); }
       100% { opacity: 1; transform: scale(1); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .owl-stroke,
+      .owl-fill {
+        animation: none;
+        stroke-dashoffset: 0;
+        opacity: 1;
+      }
     }
   </style>
   <g id="owl">

@@ -16,7 +16,7 @@ export class ThemeService {
     if (!isPlatformBrowser(this.platformId)) {
       return;
     }
-    const stored = window.localStorage.getItem(STORAGE_KEY) as Theme | null;
+    const stored = this.readStoredTheme();
     const initial: Theme = stored === 'light' || stored === 'dark' ? stored : 'dark';
     this.apply(initial);
   }
@@ -36,7 +36,27 @@ export class ThemeService {
     }
 
     if (isPlatformBrowser(this.platformId)) {
-      window.localStorage.setItem(STORAGE_KEY, next);
+      this.writeStoredTheme(next);
+    }
+  }
+
+  private readStoredTheme(): Theme | null {
+    try {
+      return typeof window.localStorage?.getItem === 'function'
+        ? (window.localStorage.getItem(STORAGE_KEY) as Theme | null)
+        : null;
+    } catch {
+      return null;
+    }
+  }
+
+  private writeStoredTheme(theme: Theme): void {
+    try {
+      if (typeof window.localStorage?.setItem === 'function') {
+        window.localStorage.setItem(STORAGE_KEY, theme);
+      }
+    } catch {
+      // The visual theme still changes when storage is unavailable.
     }
   }
 }

@@ -44,9 +44,9 @@
     </symbol>
   </defs>
 </svg>
-<app-page-loader />
+<a class="skip-link" href="#main-content">{{ i18n.t('a11y.skip_to_content') }}</a>
 <app-navbar />
-<main>
+<main id="main-content" tabindex="-1">
   <router-outlet />
 </main>
 <app-footer />

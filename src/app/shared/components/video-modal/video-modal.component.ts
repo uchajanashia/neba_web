@@ -3,11 +3,13 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   HostListener,
   PLATFORM_ID,
   computed,
   effect,
   inject,
+  viewChild,
 } from '@angular/core';
 import { I18nService } from '../../../core/services/i18n.service';
 import { VideoModalService } from '../../../core/services/video-modal.service';
@@ -21,11 +23,13 @@ import { VideoModalService } from '../../../core/services/video-modal.service';
         class="video-modal"
         role="dialog"
         aria-modal="true"
+        [attr.aria-label]="i18n.t('detail.size.video.cta')"
         [@modalFade]
         (click)="onBackdropClick()"
       >
-        <div class="video-modal__stage" [@stageScale] (click)="$event.stopPropagation()">
+        <div #stage class="video-modal__stage" [@stageScale] (click)="$event.stopPropagation()">
           <button
+            #closeButton
             type="button"
             class="video-modal__close"
             (click)="close()"
@@ -178,6 +182,10 @@ export class VideoModalComponent {
 
   readonly src = this.modalService.currentSrc;
   readonly isOpen = computed(() => this.src() !== null);
+  readonly closeButton = viewChild<ElementRef<HTMLButtonElement>>('closeButton');
+  readonly stage = viewChild<ElementRef<HTMLElement>>('stage');
+  private previouslyFocused: HTMLElement | null = null;
+  private wasOpen = false;
 
   constructor() {
     effect(() => {
@@ -185,20 +193,65 @@ export class VideoModalComponent {
         return;
       }
       const open = this.isOpen();
+      const closeButton = this.closeButton()?.nativeElement;
       const body = document.body;
+
       if (open) {
+        if (!this.wasOpen) {
+          this.previouslyFocused = document.activeElement as HTMLElement | null;
+        }
+
         body.dataset['scrollY'] = String(window.scrollY);
         body.style.overflow = 'hidden';
-      } else if (body.style.overflow === 'hidden') {
+
+        if (closeButton) {
+          queueMicrotask(() => closeButton.focus());
+        }
+      } else if (this.wasOpen) {
         body.style.overflow = '';
+        this.previouslyFocused?.focus();
+        this.previouslyFocused = null;
       }
+
+      this.wasOpen = open;
     });
   }
 
-  @HostListener('document:keydown.escape')
-  onEscape(): void {
-    if (this.isOpen()) {
+  @HostListener('document:keydown', ['$event'])
+  onKeydown(event: KeyboardEvent): void {
+    if (!this.isOpen()) {
+      return;
+    }
+
+    if (event.key === 'Escape') {
       this.close();
+      return;
+    }
+
+    if (event.key !== 'Tab') {
+      return;
+    }
+
+    const focusable = Array.from(
+      this.stage()?.nativeElement.querySelectorAll<HTMLElement>(
+        'button:not([disabled]), video[controls], [href], [tabindex]:not([tabindex="-1"])',
+      ) ?? [],
+    );
+
+    if (focusable.length === 0) {
+      event.preventDefault();
+      return;
+    }
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
     }
   }
 

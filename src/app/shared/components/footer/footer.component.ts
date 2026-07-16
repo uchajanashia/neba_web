@@ -15,7 +15,7 @@ import { I18nService } from '../../../core/services/i18n.service';
         <div class="footer__brand">
           <a routerLink="/" aria-label="ბუ-ნება — მთავარი გვერდი">
             <img
-              ngSrc="/assets/logo/logo-full.png"
+              ngSrc="/assets/logo/logo-full.webp"
               alt="ბუ-ნება"
               width="200"
               height="200"

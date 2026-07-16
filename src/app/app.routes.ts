@@ -7,7 +7,7 @@ export const routes: Routes = [
     title: 'bu-neba — Georgian Handcrafted Silver Bracelets',
     data: {
       description:
-        'Premium handcrafted silver bracelets inspired by Georgian ornament, tradition and nature. Order via Messenger or Instagram.',
+        'Premium handcrafted silver bracelets inspired by Georgian ornament, tradition and nature. Order via Messenger, Instagram, or WhatsApp.',
     },
   },
   {
@@ -61,12 +61,18 @@ export const routes: Routes = [
     title: 'Order & Contact — bu-neba',
     data: {
       description:
-        'Order your handcrafted silver bracelet via Messenger or Instagram.',
+        'Order your handcrafted silver bracelet via Messenger, Instagram, or WhatsApp.',
     },
   },
   {
+    path: '404',
+    loadComponent: () =>
+      import('./pages/not-found/not-found.component').then((m) => m.NotFoundComponent),
+    title: '404 — bu-neba',
+  },
+  {
     path: '**',
-    redirectTo: '',
-    pathMatch: 'full',
+    loadComponent: () =>
+      import('./pages/not-found/not-found.component').then((m) => m.NotFoundComponent),
   },
 ];

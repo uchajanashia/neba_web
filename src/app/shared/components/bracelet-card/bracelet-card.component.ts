@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { Bracelet } from '../../../core/models/bracelet.model';
 import { CONTACT } from '../../../core/models/contact.constants';
 import { I18nService } from '../../../core/services/i18n.service';
+import { imageSrcset } from '../../utils/image-srcset';
 
 @Component({
   selector: 'app-bracelet-card',
@@ -18,6 +19,7 @@ import { I18nService } from '../../../core/services/i18n.service';
           <img
             [ngSrc]="heroImage().src"
             [alt]="heroImage().alt"
+            [attr.srcset]="imageSrcset(heroImage().src, 1024)"
             fill
             sizes="(max-width: 760px) 92vw, 33vw"
             [priority]="variant() === 'featured'"
@@ -59,6 +61,7 @@ export class BraceletCardComponent {
   readonly bracelet = input.required<Bracelet>();
   readonly variant = input<'grid' | 'featured'>('grid');
   readonly messengerUrl = CONTACT.messenger;
+  readonly imageSrcset = imageSrcset;
   readonly heroImage = computed(() => ({
     src: this.bracelet().cardImage,
     alt: this.bracelet().name + ' handcrafted silver bracelet',

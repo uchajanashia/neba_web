@@ -1,22 +1,20 @@
 import { NgOptimizedImage } from '@angular/common';
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
-  OnDestroy,
   OnInit,
   inject,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FEATURED_BRACELETS } from '../../data/bracelets.data';
 import { CONTACT } from '../../core/models/contact.constants';
-import { GsapService } from '../../core/services/gsap.service';
 import { I18nService } from '../../core/services/i18n.service';
 import { MetaService } from '../../core/services/meta.service';
 import { BraceletCardComponent } from '../../shared/components/bracelet-card/bracelet-card.component';
 import { CtaButtonsComponent } from '../../shared/components/cta-buttons/cta-buttons.component';
 import { SectionTitleComponent } from '../../shared/components/section-title/section-title.component';
 import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.directive';
+import { imageSrcset } from '../../shared/utils/image-srcset';
 
 @Component({
   selector: 'app-home',
@@ -33,6 +31,7 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
       <div class="hero__media">
         <img
           ngSrc="/assets/images/hero/stone-hero.webp"
+          [attr.srcset]="imageSrcset('/assets/images/hero/stone-hero.webp', 1672)"
           alt="Three handcrafted bu-neba silver bracelets on a mossy mountain fortress stone at dawn, Caucasian mountain mist in the background"
           fill
           priority
@@ -123,7 +122,13 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
         <div class="photo-grid photo-grid--craft" appScrollReveal [delay]="180">
           @for (photo of craftPhotos; track photo.src) {
             <figure>
-              <img [ngSrc]="photo.src" [alt]="photo.alt" fill sizes="(max-width: 760px) 90vw, 28vw" />
+              <img
+                [ngSrc]="photo.src"
+                [attr.srcset]="imageSrcset(photo.src, 1086)"
+                [alt]="photo.alt"
+                fill
+                sizes="(max-width: 760px) 90vw, 28vw"
+              />
             </figure>
           }
         </div>
@@ -158,10 +163,10 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
+export class HomeComponent implements OnInit {
   private readonly metaService = inject(MetaService);
-  private readonly gsapService = inject(GsapService);
   readonly i18n = inject(I18nService);
+  readonly imageSrcset = imageSrcset;
 
   readonly messengerUrl = CONTACT.messenger;
   readonly featuredBracelets = FEATURED_BRACELETS;
@@ -215,38 +220,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     this.metaService.updateMeta({
       title: 'bu-neba — Georgian Handcrafted Silver Bracelets',
       description:
-        'Premium handcrafted silver bracelets inspired by Georgian ornament, tradition and nature. Order via Messenger or Instagram.',
+        'Premium handcrafted silver bracelets inspired by Georgian ornament, tradition and nature. Order via Messenger, Instagram, or WhatsApp.',
       image: '/assets/logo/og-image.jpg',
     });
   }
 
-  async ngAfterViewInit(): Promise<void> {
-    await this.gsapService.init();
-    const gsap = this.gsapService.instance;
-
-    if (!gsap) {
-      return;
-    }
-
-    gsap.to('.hero--home .hero__media', {
-      scale: 1.055,
-      duration: 12,
-      ease: 'power1.inOut',
-    });
-
-    gsap.to('.hero--home .hero__media', {
-      yPercent: 16,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '.hero--home',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true,
-      },
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.gsapService.scrollTrigger?.getAll().forEach((trigger) => trigger.kill());
-  }
 }
