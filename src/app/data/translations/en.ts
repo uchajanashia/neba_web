@@ -2,6 +2,13 @@ import type { TranslationMap } from './translation.types';
 
 export const en: TranslationMap = {
   'language.select': 'Select language',
+  'language.welcome.heading': 'Which language do you prefer?',
+  'language.welcome.intro': 'Choose the language in which you would like to explore the site.',
+  'language.welcome.selected_label': 'Language selected',
+  'language.welcome.selected_heading': 'You are all set',
+  'language.welcome.navigation_hint': 'You can change the language from the navigation at any time.',
+  'language.welcome.continue': 'Continue to the site',
+  'language.welcome.close': 'Close window',
 
   'nav.home': 'Home',
   'nav.collection': 'Collection',

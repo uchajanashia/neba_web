@@ -2,6 +2,13 @@ import type { TranslationMap } from './translation.types';
 
 export const ka: TranslationMap = {
   'language.select': 'ენის არჩევა',
+  'language.welcome.heading': 'რომელი ენა გირჩევნია?',
+  'language.welcome.intro': 'აირჩიე ენა, რომელზეც საიტის დათვალიერება უფრო კომფორტულია.',
+  'language.welcome.selected_label': 'ენა არჩეულია',
+  'language.welcome.selected_heading': 'ყველაფერი მზადაა',
+  'language.welcome.navigation_hint': 'ენის შეცვლა ნებისმიერ დროს ნავიგაციიდან შეგიძლია.',
+  'language.welcome.continue': 'საიტზე გადასვლა',
+  'language.welcome.close': 'ფანჯრის დახურვა',
 
   'nav.home': 'მთავარი',
   'nav.collection': 'კოლექცია',

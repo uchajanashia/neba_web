@@ -1290,7 +1290,7 @@ textarea {
   color: var(--color-text-faint);
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1180px) {
   .navbar__nav,
   .navbar__cta,
   .navbar__lang-desktop {
@@ -1304,6 +1304,9 @@ textarea {
   .navbar__hamburger {
     display: inline-grid;
   }
+}
+
+@media (max-width: 1100px) {
 
   .bracelet-grid,
   .pillars__grid,

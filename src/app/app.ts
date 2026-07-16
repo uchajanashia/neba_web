@@ -10,12 +10,19 @@ import { I18nService } from './core/services/i18n.service';
 import { MetaService } from './core/services/meta.service';
 import { ThemeService } from './core/services/theme.service';
 import { FooterComponent } from './shared/components/footer/footer.component';
+import { LanguageWelcomeComponent } from './shared/components/language-welcome/language-welcome.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { VideoModalComponent } from './shared/components/video-modal/video-modal.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavbarComponent, FooterComponent, VideoModalComponent],
+  imports: [
+    RouterOutlet,
+    NavbarComponent,
+    FooterComponent,
+    VideoModalComponent,
+    LanguageWelcomeComponent,
+  ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

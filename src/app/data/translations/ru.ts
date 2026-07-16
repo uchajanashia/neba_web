@@ -2,6 +2,13 @@ import type { TranslationMap } from './translation.types';
 
 export const ru: TranslationMap = {
   'language.select': 'Выбрать язык',
+  'language.welcome.heading': 'Какой язык вы предпочитаете?',
+  'language.welcome.intro': 'Выберите язык, на котором вам удобнее просматривать сайт.',
+  'language.welcome.selected_label': 'Язык выбран',
+  'language.welcome.selected_heading': 'Всё готово',
+  'language.welcome.navigation_hint': 'Язык можно изменить в навигации в любое время.',
+  'language.welcome.continue': 'Перейти на сайт',
+  'language.welcome.close': 'Закрыть окно',
 
   'nav.home': 'Главная',
   'nav.collection': 'Коллекция',
