@@ -29,7 +29,14 @@ describe('LanguageWelcomeComponent', () => {
     fixture.detectChanges();
 
     const component = fixture.componentInstance;
+    const element = fixture.nativeElement as HTMLElement;
     expect(component.visible()).toBe(true);
+    expect(element.textContent).not.toContain('რომელი ენა გირჩევნია?');
+    expect(
+      Array.from(
+        element.querySelectorAll('.language-welcome__choice > span:nth-child(2)'),
+      ).map((label) => label.textContent?.trim()),
+    ).toEqual(['ქართული', 'English', 'Русский']);
 
     component.select('en');
     fixture.detectChanges();

@@ -20,9 +20,9 @@ const LANGUAGE_CHOICES: ReadonlyArray<{
   shortLabel: string;
   prompt: string;
 }> = [
-  { code: 'ka', shortLabel: 'ქარ', prompt: 'ქართული მირჩევნია' },
-  { code: 'en', shortLabel: 'ENG', prompt: 'I prefer English' },
-  { code: 'ru', shortLabel: 'РУС', prompt: 'Я предпочитаю русский' },
+  { code: 'ka', shortLabel: 'ქარ', prompt: 'ქართული' },
+  { code: 'en', shortLabel: 'ENG', prompt: 'English' },
+  { code: 'ru', shortLabel: 'РУС', prompt: 'Русский' },
 ];
 
 @Component({
@@ -35,7 +35,11 @@ const LANGUAGE_CHOICES: ReadonlyArray<{
           class="language-welcome__dialog"
           role="dialog"
           aria-modal="true"
-          aria-labelledby="language-welcome-title"
+          [attr.aria-label]="
+            phase() === 'choose'
+              ? 'ენა · Language · Язык'
+              : i18n.t('language.welcome.selected_heading')
+          "
           aria-live="polite"
           (click)="$event.stopPropagation()"
         >
@@ -48,19 +52,11 @@ const LANGUAGE_CHOICES: ReadonlyArray<{
             <span aria-hidden="true">×</span>
           </button>
 
-          <div class="language-welcome__mark" aria-hidden="true">
-            <span></span>
-          </div>
-
           @if (phase() === 'choose') {
-            <p class="label">bu-neba</p>
-            <h2 id="language-welcome-title">{{ i18n.t('language.welcome.heading') }}</h2>
-            <p class="language-welcome__intro">{{ i18n.t('language.welcome.intro') }}</p>
-
             <div
               class="language-welcome__choices"
               role="group"
-              [attr.aria-label]="i18n.t('language.select')"
+              aria-label="ენა · Language · Язык"
             >
               @for (choice of choices; track choice.code) {
                 <button
@@ -77,7 +73,7 @@ const LANGUAGE_CHOICES: ReadonlyArray<{
             </div>
           } @else {
             <p class="label">{{ i18n.t('language.welcome.selected_label') }}</p>
-            <h2 id="language-welcome-title">{{ i18n.t('language.welcome.selected_heading') }}</h2>
+            <h2>{{ i18n.t('language.welcome.selected_heading') }}</h2>
             <p class="language-welcome__intro">
               {{ i18n.t('language.welcome.navigation_hint') }}
             </p>
@@ -143,23 +139,6 @@ const LANGUAGE_CHOICES: ReadonlyArray<{
       color: var(--color-text-primary);
     }
 
-    .language-welcome__mark {
-      display: grid;
-      width: 2.75rem;
-      height: 2.75rem;
-      margin-block-end: var(--space-6);
-      place-items: center;
-      border: 1px solid rgba(183, 146, 80, 0.45);
-      border-radius: 50%;
-    }
-
-    .language-welcome__mark span {
-      width: 0.65rem;
-      aspect-ratio: 1;
-      border: 1px solid var(--color-gold);
-      transform: rotate(45deg);
-    }
-
     h2 {
       max-width: 13ch;
       margin-block: var(--space-3);
@@ -174,7 +153,7 @@ const LANGUAGE_CHOICES: ReadonlyArray<{
     .language-welcome__choices {
       display: grid;
       gap: var(--space-2);
-      margin-block-start: var(--space-7);
+      margin-block-start: var(--space-5);
     }
 
     .language-welcome__choice {
